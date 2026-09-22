@@ -1,0 +1,817 @@
+{
+ "number": 6,
+ "title": "IN WHICH EEYORE HAS A BIRTHDAY AND GETS TWO PRESENTS",
+ "pages": [
+  {
+   "blocks": [
+    {
+     "type": "img",
+     "img": "illus55"
+    },
+    {
+     "type": "p",
+     "text": "Eeyore, the old grey Donkey, stood by the side of the stream, and looked at himself in the water."
+    },
+    {
+     "type": "p",
+     "text": "\"Pathetic,\" he said. \"That's what it is. Pathetic.\""
+    },
+    {
+     "type": "p",
+     "text": "He turned and walked slowly down the stream for twenty yards, splashed across it, and walked slowly back on the other side. Then he looked at himself in the water again."
+    },
+    {
+     "type": "p",
+     "text": "\"As I thought,\" he said. \"No better from <i>this</i> side. But nobody minds. Nobody cares. Pathetic, that's what it is.\""
+    },
+    {
+     "type": "p",
+     "text": "There was a crackling noise in the bracken behind him, and out came Pooh."
+    },
+    {
+     "type": "p",
+     "text": "\"Good morning, Eeyore,\" said Pooh."
+    },
+    {
+     "type": "p",
+     "text": "\"Good morning, Pooh Bear,\" said Eeyore gloomily. \"If it <i>is</i> a good morning,\" he said. \"Which I doubt,\" said he."
+    },
+    {
+     "type": "p",
+     "text": "\"Why, what's the matter?\""
+    },
+    {
+     "type": "p",
+     "text": "\"Nothing, Pooh Bear, nothing. We can't all, and some of us don't. That's all there is to it.\""
+    },
+    {
+     "type": "p",
+     "text": "\"Can't all <i>what</i>?\" said Pooh, rubbing his nose."
+    },
+    {
+     "type": "p",
+     "text": "\"Gaiety. Song-and-dance. Here we go round the mulberry bush.\""
+    },
+    {
+     "type": "p",
+     "text": "\"Oh!\" said Pooh. He thought for a long time, and then asked, \"What mulberry bush is that?\""
+    },
+    {
+     "type": "p",
+     "text": "\"Bon-hommy,\" went on Eeyore gloomily. \"French word meaning bonhommy,\" he explained. \"I'm not complaining, but There It Is.\""
+    }
+   ]
+  },
+  {
+   "blocks": [
+    {
+     "type": "img",
+     "img": "illus56"
+    },
+    {
+     "type": "p",
+     "text": "Pooh sat down on a large stone, and tried to think this out. It sounded to him like a riddle, and he was never much good at riddles, being a Bear of Very Little Brain. So he sang <i>Cottleston Pie</i> instead:"
+    },
+    {
+     "type": "verse",
+     "lines": [
+      "Cottleston, Cottleston, Cottleston Pie,",
+      "A fly can't bird, but a bird can fly.",
+      "Ask me a riddle and I reply:",
+      "\"<i>Cottleston, Cottleston, Cottleston Pie.</i>\""
+     ]
+    },
+    {
+     "type": "p",
+     "text": "That was the first verse. When he had finished it, Eeyore didn't actually say that he didn't like it, so Pooh very kindly sang the second verse to him:"
+    },
+    {
+     "type": "verse",
+     "lines": [
+      "Cottleston, Cottleston, Cottleston Pie,",
+      "A fish can't whistle and neither can I.",
+      "Ask me a riddle and I reply:",
+      "\"<i>Cottleston, Cottleston, Cottleston Pie</i>.\""
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Eeyore still said nothing at all, so Pooh hummed the third verse quietly to himself:"
+    },
+    {
+     "type": "verse",
+     "lines": [
+      "Cottleston, Cottleston, Cottleston Pie,",
+      "Why does a chicken, I don't know why.",
+      "Ask me a riddle and I reply:",
+      "\"<i>Cottleston, Cottleston, Cottleston Pie</i>.\""
+     ]
+    }
+   ]
+  },
+  {
+   "blocks": [
+    {
+     "type": "img",
+     "img": "illus57"
+    },
+    {
+     "type": "p",
+     "text": "\"That's right,\" said Eeyore. \"Sing. Umty-tiddly, umty-too. Here we go gathering Nuts and May. Enjoy yourself.\""
+    },
+    {
+     "type": "p",
+     "text": "\"I am,\" said Pooh."
+    },
+    {
+     "type": "p",
+     "text": "\"Some can,\" said Eeyore."
+    },
+    {
+     "type": "p",
+     "text": "\"Why, what's the matter?\""
+    },
+    {
+     "type": "p",
+     "text": "\"<i>Is</i> anything the matter?\""
+    },
+    {
+     "type": "p",
+     "text": "\"You seem so sad, Eeyore.\""
+    },
+    {
+     "type": "p",
+     "text": "\"Sad? Why should I be sad? It's my birthday. The happiest day of the year.\""
+    },
+    {
+     "type": "p",
+     "text": "\"Your birthday?\" said Pooh in great surprise."
+    },
+    {
+     "type": "p",
+     "text": "\"Of course it is. Can't you see? Look at all the presents I have had.\" He waved a foot from side to side. \"Look at the birthday cake. Candles and pink sugar.\""
+    },
+    {
+     "type": "p",
+     "text": "Pooh looked—first to the right and then to the left."
+    },
+    {
+     "type": "p",
+     "text": "\"Presents?\" said Pooh. \"Birthday cake?\" said Pooh. \"<i>Where?</i>\""
+    },
+    {
+     "type": "p",
+     "text": "\"Can't you see them?\""
+    },
+    {
+     "type": "p",
+     "text": "\"No,\" said Pooh."
+    },
+    {
+     "type": "p",
+     "text": "\"Neither can I,\" said Eeyore. \"Joke,\" he explained. \"Ha ha!\""
+    },
+    {
+     "type": "p",
+     "text": "Pooh scratched his head, being a little puzzled by all this."
+    }
+   ]
+  },
+  {
+   "blocks": [
+    {
+     "type": "p",
+     "text": "\"But is it really your birthday?\" he asked."
+    },
+    {
+     "type": "p",
+     "text": "\"It is.\""
+    },
+    {
+     "type": "p",
+     "text": "\"Oh! Well, Many happy returns of the day, Eeyore.\""
+    },
+    {
+     "type": "p",
+     "text": "\"And many happy returns to you, Pooh Bear.\""
+    },
+    {
+     "type": "p",
+     "text": "\"But it isn't <i>my</i> birthday.\""
+    },
+    {
+     "type": "p",
+     "text": "\"No, it's mine.\""
+    },
+    {
+     "type": "p",
+     "text": "\"But you said 'Many happy returns'——\""
+    },
+    {
+     "type": "p",
+     "text": "\"Well, why not? You don't always want to be miserable on my birthday, do you?\""
+    },
+    {
+     "type": "p",
+     "text": "\"Oh, I see,\" said Pooh."
+    },
+    {
+     "type": "p",
+     "text": "\"It's bad enough,\" said Eeyore, almost breaking down, \"being miserable myself, what with no presents and no cake and no candles, and no proper notice taken of me at all, but if everybody else is going to be miserable too——\""
+    },
+    {
+     "type": "p",
+     "text": "This was too much for Pooh. \"Stay there!\" he called to Eeyore, as he turned and hurried back home as quick as he could; for he felt that he must get poor Eeyore a present of <i>some</i> sort at once, and he could always think of a proper one afterwards."
+    }
+   ]
+  },
+  {
+   "blocks": [
+    {
+     "type": "img",
+     "img": "illus58"
+    },
+    {
+     "type": "p",
+     "text": "Outside his house he found Piglet, jumping up and down trying to reach the knocker."
+    },
+    {
+     "type": "p",
+     "text": "\"Hallo, Piglet,\" he said."
+    },
+    {
+     "type": "p",
+     "text": "\"Hallo, Pooh,\" said Piglet."
+    },
+    {
+     "type": "p",
+     "text": "\"What are <i>you</i> trying to do?\""
+    },
+    {
+     "type": "p",
+     "text": "\"I was trying to reach the knocker,\" said Piglet. \"I just came round——\""
+    },
+    {
+     "type": "p",
+     "text": "\"Let me do it for you,\" said Pooh kindly. So he reached up and knocked at the door. \"I have just seen Eeyore,\" he began, \"and poor Eeyore is in a Very Sad Condition, because it's his birthday, and nobody has taken any notice of it, and he's very Gloomy—you know what Eeyore is—and there he was, and——What a long time whoever lives here is answering this door.\" And he knocked again."
+    },
+    {
+     "type": "p",
+     "text": "\"But Pooh,\" said Piglet, \"it's your own house!\""
+    },
+    {
+     "type": "p",
+     "text": "\"Oh!\" said Pooh. \"So it is,\" he said. \"Well, let's go in.\""
+    },
+    {
+     "type": "p",
+     "text": "So in they went. The first thing Pooh did was to go to the cupboard to see if he had quite a small jar of honey left; and he had, so he took it down."
+    }
+   ]
+  },
+  {
+   "blocks": [
+    {
+     "type": "img",
+     "img": "illus59"
+    },
+    {
+     "type": "p",
+     "text": "\"I'm giving this to Eeyore,\" he explained, \"as a present. What are <i>you</i> going to give?\""
+    },
+    {
+     "type": "p",
+     "text": "\"Couldn't I give it too?\" said Piglet. \"From both of us?\""
+    },
+    {
+     "type": "p",
+     "text": "\"No,\" said Pooh. \"That would <i>not</i> be a good plan.\""
+    },
+    {
+     "type": "p",
+     "text": "\"All right, then, I'll give him a balloon. I've got one left from my party. I'll go and get it now, shall I?\""
+    },
+    {
+     "type": "p",
+     "text": "\"That, Piglet, is a <i>very</i> good idea. It is just what Eeyore wants to cheer him up. Nobody can be uncheered with a balloon.\""
+    },
+    {
+     "type": "p",
+     "text": "So off Piglet trotted; and in the other direction went Pooh, with his jar of honey."
+    }
+   ]
+  },
+  {
+   "blocks": [
+    {
+     "type": "img",
+     "img": "illus60"
+    },
+    {
+     "type": "p",
+     "text": "It was a warm day, and he had a long way to go. He hadn't gone more than half-way when a sort of funny feeling began to creep all over him. It began at the tip of his nose and trickled all through him and out at the soles of his feet. It was just as if somebody inside him were saying, \"Now then, Pooh, time for a little something.\""
+    },
+    {
+     "type": "p",
+     "text": "\"Dear, dear,\" said Pooh, \"I didn't know it was as late as that.\" So he sat down and took the top off his jar of honey. \"Lucky I brought this with me,\" he thought. \"Many a bear going out on a warm day like this would never have thought of bringing a little something with him.\" And he began to eat."
+    }
+   ]
+  },
+  {
+   "blocks": [
+    {
+     "type": "img",
+     "img": "illus61"
+    },
+    {
+     "type": "p",
+     "text": "\"Now let me see,\" he thought, as he took his last lick of the inside of the jar, \"where was I going? Ah, yes, Eeyore.\" He got up slowly."
+    },
+    {
+     "type": "p",
+     "text": "And then, suddenly, he remembered. He had eaten Eeyore's birthday present!"
+    },
+    {
+     "type": "p",
+     "text": "\"<i>Bother!</i>\" said Pooh. \"What <i>shall</i> I do? I <i>must</i> give him <i>something</i>.\""
+    }
+   ]
+  },
+  {
+   "blocks": [
+    {
+     "type": "img",
+     "img": "illus62"
+    },
+    {
+     "type": "p",
+     "text": "For a little while he couldn't think of anything. Then he thought: \"Well, it's a very nice pot, even if there's no honey in it, and if I washed it clean, and got somebody to write '<i>A Happy Birthday</i>' on it, Eeyore could keep things in it, which might be Useful.\" So, as he was just passing the Hundred Acre Wood, he went inside to call on Owl, who lived there."
+    },
+    {
+     "type": "p",
+     "text": "\"Good morning, Owl,\" he said."
+    },
+    {
+     "type": "p",
+     "text": "\"Good morning, Pooh,\" said Owl."
+    },
+    {
+     "type": "p",
+     "text": "\"Many happy returns of Eeyore's birthday,\" said Pooh."
+    },
+    {
+     "type": "p",
+     "text": "\"Oh, is that what it is?\""
+    },
+    {
+     "type": "p",
+     "text": "\"What are you giving him, Owl?\""
+    },
+    {
+     "type": "p",
+     "text": "\"What are <i>you</i> giving him, Pooh?\""
+    },
+    {
+     "type": "p",
+     "text": "\"I'm giving him a Useful Pot to Keep Things In, and I wanted to ask you——\""
+    },
+    {
+     "type": "p",
+     "text": "\"Is this it?\" said Owl, taking it out of Pooh's paw."
+    },
+    {
+     "type": "p",
+     "text": "\"Yes, and I wanted to ask you——\""
+    },
+    {
+     "type": "p",
+     "text": "\"Somebody has been keeping honey in it,\" said Owl."
+    },
+    {
+     "type": "p",
+     "text": "\"You can keep <i>anything</i> in it,\" said Pooh earnestly. \"It's Very Useful like that. And I wanted to ask you——\""
+    }
+   ]
+  },
+  {
+   "blocks": [
+    {
+     "type": "p",
+     "text": "\"You ought to write '<i>A Happy Birthday</i>' on it.\""
+    },
+    {
+     "type": "p",
+     "text": "\"<i>That</i> was what I wanted to ask you,\" said Pooh. \"Because my spelling is Wobbly. It's good spelling but it Wobbles, and the letters get in the wrong places. Would <i>you</i> write 'A Happy Birthday' on it for me?\""
+    },
+    {
+     "type": "p",
+     "text": "\"It's a nice pot,\" said Owl, looking at it all round. \"Couldn't I give it too? From both of us?\""
+    },
+    {
+     "type": "p",
+     "text": "\"No,\" said Pooh. \"That would <i>not</i> be a good plan. Now I'll just wash it first, and then you can write on it.\""
+    },
+    {
+     "type": "p",
+     "text": "Well, he washed the pot out, and dried it, while Owl licked the end of his pencil, and wondered how to spell \"birthday.\""
+    },
+    {
+     "type": "p",
+     "text": "\"Can you read, Pooh?\" he asked a little anxiously. \"There's a notice about knocking and ringing outside my door, which Christopher Robin wrote. Could you read it?\""
+    },
+    {
+     "type": "p",
+     "text": "\"Christopher Robin told me what it said, and <i>then</i> I could.\""
+    },
+    {
+     "type": "p",
+     "text": "\"Well, I'll tell you what <i>this</i> says, and then you'll be able to.\""
+    }
+   ]
+  },
+  {
+   "blocks": [
+    {
+     "type": "img",
+     "img": "illus63"
+    },
+    {
+     "type": "p",
+     "text": "So Owl wrote ... and this is what he wrote:"
+    },
+    {
+     "type": "p",
+     "text": "HIPY PAPY BTHUTHDTH THUTHDA BTHUTHDY."
+    },
+    {
+     "type": "p",
+     "text": "Pooh looked on admiringly."
+    },
+    {
+     "type": "p",
+     "text": "\"I'm just saying 'A Happy Birthday',\" said Owl carelessly."
+    },
+    {
+     "type": "p",
+     "text": "\"It's a nice long one,\" said Pooh, very much impressed by it."
+    },
+    {
+     "type": "p",
+     "text": "\"Well, <i>actually</i>, of course, I'm saying 'A Very Happy Birthday with love from Pooh.' Naturally it takes a good deal of pencil to say a long thing like that.\""
+    },
+    {
+     "type": "p",
+     "text": "\"Oh, I see,\" said Pooh."
+    },
+    {
+     "type": "p",
+     "text": "While all this was happening, Piglet had gone back to his own house to get Eeyore's balloon. He held it very tightly against himself, so that it shouldn't blow away, and he ran as fast as he could so as to get to Eeyore before Pooh did; for he thought that he would like to be the first one to give a present, just as if he had thought of it without being told by anybody. And running along, and thinking how pleased Eeyore would be, he didn't look where he was going ... and suddenly he put his foot in a rabbit hole, and fell down flat on his face."
+    }
+   ]
+  },
+  {
+   "blocks": [
+    {
+     "type": "img",
+     "img": "illus64"
+    },
+    {
+     "type": "p",
+     "text": "BANG!!!???***!!!"
+    },
+    {
+     "type": "p",
+     "text": "Piglet lay there, wondering what had happened. At first he thought that the whole world had blown up; and then he thought that perhaps only the Forest part of it had; and then he thought that perhaps only <i>he</i> had, and he was now alone in the moon or somewhere, and would never see Christopher Robin or Pooh or Eeyore again. And then he thought, \"Well, even if I'm in the moon, I needn't be face downwards all the time,\" so he got cautiously up and looked about him."
+    },
+    {
+     "type": "p",
+     "text": "He was still in the Forest!"
+    },
+    {
+     "type": "p",
+     "text": "\"Well, that's funny,\" he thought. \"I wonder what that bang was. I couldn't have made such a noise just falling down. And where's my balloon? And what's that small piece of damp rag doing?\""
+    },
+    {
+     "type": "p",
+     "text": "It was the balloon!"
+    },
+    {
+     "type": "p",
+     "text": "\"Oh, dear!\" said Piglet \"Oh, dear, oh, dearie, dearie, dear! Well, it's too late now. I can't go back, and I haven't another balloon, and perhaps Eeyore doesn't <i>like</i> balloons so <i>very</i> much.\""
+    }
+   ]
+  },
+  {
+   "blocks": [
+    {
+     "type": "p",
+     "text": "So he trotted on, rather sadly now, and down he came to the side of the stream where Eeyore was, and called out to him."
+    },
+    {
+     "type": "p",
+     "text": "\"Good morning, Eeyore,\" shouted Piglet."
+    },
+    {
+     "type": "p",
+     "text": "\"Good morning, Little Piglet,\" said Eeyore. \"If it <i>is</i> a good morning,\" he said. \"Which I doubt,\" said he. \"Not that it matters,\" he said."
+    },
+    {
+     "type": "p",
+     "text": "\"Many happy returns of the day,\" said Piglet, having now got closer."
+    },
+    {
+     "type": "p",
+     "text": "Eeyore stopped looking at himself in the stream, and turned to stare at Piglet."
+    },
+    {
+     "type": "p",
+     "text": "\"Just say that again,\" he said."
+    },
+    {
+     "type": "p",
+     "text": "\"Many hap——\""
+    },
+    {
+     "type": "p",
+     "text": "\"Wait a moment.\""
+    },
+    {
+     "type": "p",
+     "text": "Balancing on three legs, he began to bring his fourth leg very cautiously up to his ear. \"I did this yesterday,\" he explained, as he fell down for the third time. \"It's quite easy. It's so as I can hear better.... There, that's done it! Now then, what were you saying?\" He pushed his ear forward with his hoof."
+    }
+   ]
+  },
+  {
+   "blocks": [
+    {
+     "type": "img",
+     "img": "illus65"
+    },
+    {
+     "type": "p",
+     "text": "\"Many happy returns of the day,\" said Piglet again."
+    },
+    {
+     "type": "p",
+     "text": "\"Meaning me?\""
+    },
+    {
+     "type": "p",
+     "text": "\"Of course, Eeyore.\""
+    },
+    {
+     "type": "p",
+     "text": "\"My birthday?\""
+    },
+    {
+     "type": "p",
+     "text": "\"Yes.\""
+    },
+    {
+     "type": "p",
+     "text": "\"Me having a real birthday?\""
+    },
+    {
+     "type": "p",
+     "text": "\"Yes, Eeyore, and I've brought you a present.\""
+    },
+    {
+     "type": "p",
+     "text": "Eeyore took down his right hoof from his right ear, turned round, and with great difficulty put up his left hoof."
+    },
+    {
+     "type": "p",
+     "text": "\"I must have that in the other ear,\" he said. \"Now then.\""
+    },
+    {
+     "type": "p",
+     "text": "\"A present,\" said Piglet very loudly."
+    },
+    {
+     "type": "p",
+     "text": "\"Meaning me again?\""
+    },
+    {
+     "type": "p",
+     "text": "\"Yes.\""
+    },
+    {
+     "type": "p",
+     "text": "\"My birthday still?\""
+    },
+    {
+     "type": "p",
+     "text": "\"Of course, Eeyore.\""
+    },
+    {
+     "type": "p",
+     "text": "\"Me going on having a real birthday?\""
+    },
+    {
+     "type": "p",
+     "text": "\"Yes, Eeyore, and I brought you a balloon.\""
+    }
+   ]
+  },
+  {
+   "blocks": [
+    {
+     "type": "img",
+     "img": "illus66"
+    },
+    {
+     "type": "p",
+     "text": "\"<i>Balloon?</i>\" said Eeyore. \"You did say balloon? One of those big coloured things you blow up? Gaiety, song-and-dance, here we are and there we are?\""
+    },
+    {
+     "type": "p",
+     "text": "\"Yes, but I'm afraid—I'm very sorry, Eeyore—but when I was running along to bring it you, I fell down.\""
+    },
+    {
+     "type": "p",
+     "text": "\"Dear, dear, how unlucky! You ran too fast, I expect. You didn't hurt yourself, Little Piglet?\""
+    },
+    {
+     "type": "p",
+     "text": "\"No, but I—I—oh, Eeyore, I burst the balloon!\""
+    },
+    {
+     "type": "p",
+     "text": "There was a very long silence."
+    },
+    {
+     "type": "p",
+     "text": "\"My balloon?\" said Eeyore at last."
+    },
+    {
+     "type": "p",
+     "text": "Piglet nodded."
+    },
+    {
+     "type": "p",
+     "text": "\"My birthday balloon?\""
+    },
+    {
+     "type": "p",
+     "text": "\"Yes, Eeyore,\" said Piglet sniffing a little. \"Here it is. With—with many happy returns of the day.\" And he gave Eeyore the small piece of damp rag."
+    },
+    {
+     "type": "p",
+     "text": "\"Is this it?\" said Eeyore, a little surprised."
+    },
+    {
+     "type": "p",
+     "text": "Piglet nodded."
+    },
+    {
+     "type": "p",
+     "text": "\"My present?\""
+    },
+    {
+     "type": "p",
+     "text": "Piglet nodded again."
+    },
+    {
+     "type": "p",
+     "text": "\"The balloon?\""
+    },
+    {
+     "type": "p",
+     "text": "\"Yes.\""
+    },
+    {
+     "type": "p",
+     "text": "\"Thank you, Piglet,\" said Eeyore. \"You don't mind my asking,\" he went on, \"but what colour was this balloon when it—when it <i>was</i> a balloon?\""
+    }
+   ]
+  },
+  {
+   "blocks": [
+    {
+     "type": "p",
+     "text": "\"Red.\""
+    },
+    {
+     "type": "p",
+     "text": "\"I just wondered.... Red,\" he murmured to himself. \"My favourite colour.... How big was it?\""
+    },
+    {
+     "type": "p",
+     "text": "\"About as big as me.\""
+    },
+    {
+     "type": "p",
+     "text": "\"I just wondered.... About as big as Piglet,\" he said to himself sadly. \"My favourite size. Well, well.\""
+    },
+    {
+     "type": "p",
+     "text": "Piglet felt very miserable, and didn't know what to say. He was still opening his mouth to begin something, and then deciding that it wasn't any good saying <i>that</i>, when he heard a shout from the other side of the river, and there was Pooh."
+    },
+    {
+     "type": "p",
+     "text": "\"Many happy returns of the day,\" called out Pooh, forgetting that he had said it already."
+    },
+    {
+     "type": "p",
+     "text": "\"Thank you, Pooh, I'm having them,\" said Eeyore gloomily."
+    },
+    {
+     "type": "p",
+     "text": "\"I've brought you a little present,\" said Pooh excitedly."
+    },
+    {
+     "type": "p",
+     "text": "\"I've had it,\" said Eeyore."
+    },
+    {
+     "type": "p",
+     "text": "Pooh had now splashed across the stream to Eeyore, and Piglet was sitting a little way off, his head in his paws, snuffling to himself."
+    },
+    {
+     "type": "p",
+     "text": "\"It's a Useful Pot,\" said Pooh. \"Here it is. And it's got 'A Very Happy Birthday with love from Pooh' written on it. That's what all that writing is. And it's for putting things in. There!\""
+    }
+   ]
+  },
+  {
+   "blocks": [
+    {
+     "type": "p",
+     "text": "When Eeyore saw the pot, he became quite excited."
+    },
+    {
+     "type": "p",
+     "text": "\"Why!\" he said. \"I believe my Balloon will just go into that Pot!\""
+    },
+    {
+     "type": "p",
+     "text": "\"Oh, no, Eeyore,\" said Pooh. \"Balloons are much too big to go into Pots. What you do with a balloon is, you hold the ballon——\""
+    },
+    {
+     "type": "p",
+     "text": "\"Not mine,\" said Eeyore proudly. \"Look, Piglet!\" And as Piglet looked sorrowfully round, Eeyore picked the balloon up with his teeth, and placed it carefully in the pot; picked it out and put it on the ground; and then picked it up again and put it carefully back."
+    },
+    {
+     "type": "p",
+     "text": "\"So it does!\" said Pooh. \"It goes in!\""
+    },
+    {
+     "type": "p",
+     "text": "\"So it does!\" said Piglet. \"And it comes out!\""
+    },
+    {
+     "type": "p",
+     "text": "\"Doesn't it?\" said Eeyore. \"It goes in and out like anything.\""
+    },
+    {
+     "type": "p",
+     "text": "\"I'm very glad,\" said Pooh happily, \"that I thought of giving you a Useful Pot to put things in.\""
+    },
+    {
+     "type": "p",
+     "text": "\"I'm very glad,\" said Piglet happily, \"that I thought of giving you Something to put in a Useful Pot.\""
+    },
+    {
+     "type": "p",
+     "text": "But Eeyore wasn't listening. He was taking the balloon out, and putting it back again, as happy as could be...."
+    }
+   ]
+  },
+  {
+   "blocks": [
+    {
+     "type": "img",
+     "img": "illus67"
+    },
+    {
+     "type": "p",
+     "text": "\"And didn't <i>I</i> give him anything?\" asked Christopher Robin sadly."
+    },
+    {
+     "type": "p",
+     "text": "\"Of course you did,\" I said. \"You gave him—don't you remember—a little—a little——\""
+    },
+    {
+     "type": "p",
+     "text": "\"I gave him a box of paints to paint things with.\""
+    },
+    {
+     "type": "p",
+     "text": "\"That was it.\""
+    },
+    {
+     "type": "p",
+     "text": "\"Why didn't I give it to him in the morning?\""
+    },
+    {
+     "type": "p",
+     "text": "\"You were so busy getting his party ready for him. He had a cake with icing on the top, and three candles, and his name in pink sugar, and——\""
+    },
+    {
+     "type": "p",
+     "text": "\"Yes, <i>I</i> remember,\" said Christopher Robin."
+    }
+   ]
+  }
+ ]
+}

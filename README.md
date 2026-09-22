@@ -18,6 +18,12 @@
 
 In Audacity, click where a scene starts and press **Ctrl+B**, then type a short name ("The Balloon") and press Enter. Repeat for each scene; add one at 0:00 for the opening scene. Then **File → Export → Export Labels…** and save it into `audio/` with the same name as the mp3 but ending `.txt` (e.g. `audio/01-pooh-and-some-bees.txt`). The page picks it up automatically: ticks on the progress bar and tap-to-jump scene buttons. A label named just `page` is reserved and ignored.
 
+### Page labels (for "turn the page" mode, coming later)
+
+Open `recording-script.html` (on the site, or locally) and read from it. At every honey bar, press **Ctrl+B** and type `page`, right before the first word of that page. Page 1 needs no label. They go in the same labels file as the scene markers.
+
+The pages are fixed by `tools/build-text.py`: every Shepard drawing starts a page, pages over 250 words are split evenly at paragraph breaks, and a drawing that ends a chapter joins the last page. Don't re-run it with different settings after recording, or the labels won't line up.
+
 To tease the next one, set its `soonText` (e.g. `"Coming Saturday!"`).
 
 The welcome note card is hidden until `welcome.status` is `"ready"` and `audio/00-welcome.mp3` exists.
