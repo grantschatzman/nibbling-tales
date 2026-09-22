@@ -199,7 +199,60 @@
   .scene-chip small { color: var(--ink-soft); margin-left: 4px; font-variant-numeric: tabular-nums; }
   .scene-chip.on { background: var(--honey); border-color: var(--ink); }
   .scene-chip:focus-visible { outline: 3px solid var(--honey); outline-offset: 2px; }
-  .save { color: var(--ink-soft); text-underline-offset: 3px; }
+  .save { color: var(--ink-soft); text-underline-offset: 3px; font-size: 15px; }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin: 8px 0 0; }
+  .read-btn {
+    display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+    font: 500 15px var(--body); color: var(--ink); background: var(--paper);
+    border: 1.4px solid var(--ink-soft); border-radius: 999px; padding: 3px 12px 3px 10px;
+  }
+  .read-btn svg { width: 18px; height: 18px; }
+  .read-btn:hover { background: var(--paper-deep); }
+  .read-btn:focus-visible { outline: 3px solid var(--honey); outline-offset: 2px; }
+
+  /* the book, opened */
+  .reader-sheet {
+    border: 0; padding: 0; margin: 0; width: 100%; height: 100%; max-width: none; max-height: none;
+    background: var(--paper); color: var(--ink);
+  }
+  .reader-sheet[open] { display: flex; flex-direction: column; }
+  .reader-sheet::backdrop { background: rgba(62,47,35,.45); }
+  @media (min-width: 820px) {
+    .reader-sheet { width: 760px; height: calc(100% - 40px); margin: 20px auto; border: 1.6px solid var(--ink); border-radius: var(--radius); }
+  }
+  .rs-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px 10px 20px; border-bottom: 1.2px solid var(--ink-faint); background: var(--card); }
+  .rs-heading { flex: 1; min-width: 0; }
+  .rs-label { margin: 0; font-family: var(--display-sc); font-size: 14px; letter-spacing: .06em; color: var(--ink-soft); }
+  .rs-title { margin: 0; font-family: var(--display); font-weight: 400; font-size: 24px; line-height: 1.15; }
+  .rs-btn {
+    flex: none; width: 46px; height: 46px; border-radius: 50%; cursor: pointer; color: var(--ink);
+    border: 1.4px solid var(--ink-soft); background: var(--paper); display: grid; place-items: center;
+    font: 500 17px var(--body);
+  }
+  .rs-btn span span { font-size: 23px; }
+  .rs-btn svg { width: 20px; height: 20px; }
+  .rs-btn:focus-visible { outline: 3px solid var(--honey); outline-offset: 2px; }
+  .rs-body { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; padding: 8px 22px 40px; }
+  .rs-text { max-width: 34em; margin: 0 auto; font-size: var(--rs-size, 20px); line-height: 1.6; }
+  .rs-chtitle { font-family: var(--display); font-style: italic; font-weight: 400; font-size: 1.05em; text-align: center; color: var(--ink-soft); margin: 18px 0 4px; }
+  .rs-loading { text-align: center; font-style: italic; color: var(--ink-soft); margin-top: 40px; }
+  .rpage { position: relative; padding: 18px 0 6px; }
+  .rpage + .rpage { border-top: 1px dashed var(--ink-faint); }
+  .rpage .pno { position: absolute; top: 6px; right: 0; font-family: var(--display-sc); font-size: 14px; color: var(--ink-faint); }
+  .rpage p { margin: 0 0 .7em; }
+  .rpage img { display: block; max-width: min(100%, 380px); max-height: 300px; height: auto; margin: 8px auto 16px; }
+  .rpage .verse { font-style: italic; padding-left: 1.4em; }
+  .rpage .verse i { font-style: normal; }
+  .rpage .orn { text-align: center; color: var(--ink-faint); letter-spacing: .5em; }
+  .rs-end { text-align: center; font-family: var(--display-sc); letter-spacing: .06em; color: var(--ink-soft); margin: 28px 0 0; }
+  .rs-foot {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); border-top: 1.2px solid var(--ink-faint); background: var(--card);
+  }
+  .rs-foot .play { width: 54px; height: 54px; flex: none; }
+  .rs-foot .play svg { width: 22px; height: 22px; }
+  .reader-sheet.playing .play .i-play { display: none; }
+  .reader-sheet.playing .play .i-pause { display: block; }
   .oops { grid-column: 1 / -1; margin: 8px 0 0; font-style: italic; color: var(--honey-deep); display: none; }
   .card.missing .oops { display: block; }
 
@@ -419,6 +472,30 @@
   </footer>
 </main>
 
+<dialog id="reader-sheet" class="reader-sheet" aria-labelledby="rs-title">
+  <div class="rs-head">
+    <div class="rs-heading">
+      <p class="rs-label"></p>
+      <h2 class="rs-title" id="rs-title"></h2>
+    </div>
+    <button type="button" class="rs-btn rs-size" aria-label="Change text size"><span aria-hidden="true">A<span>A</span></span></button>
+    <button type="button" class="rs-btn rs-close" aria-label="Close the book"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="rs-body"><div class="rs-text"></div></div>
+  <div class="rs-foot">
+    <button type="button" class="play" aria-label="Play">
+      <svg class="i-play" aria-hidden="true"><use href="#i-play"/></svg>
+      <svg class="i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+    </button>
+    <button type="button" class="back" aria-label="Go back 15 seconds">&#8634; 15</button>
+    <div class="bar" role="slider" tabindex="0" aria-label="Position in story" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="track"><div class="fill"></div></div><div class="ticks"></div>
+      <svg class="thumb" viewBox="0 0 40 30" aria-hidden="true"><use href="#bee"/></svg>
+    </div>
+    <span class="time">0:00</span>
+  </div>
+</dialog>
+
 <script src="stories.js"></script>
 <script>
 (function () {
@@ -536,9 +613,12 @@
     html += "<h3>" + esc(c.short) + "</h3>";
     html += '<p class="full-title">' + esc(c.title) + "</p>";
     if (c.isReady) {
-      html += '<p class="meta">' + (c.minutes ? "About " + esc(c.minutes) + " minutes · " : "") +
-        '<a class="save" href="' + esc(c.file) + '" download>Save for the car</a>' +
-        '<span class="heard">' + (listened.has(c.key) ? " · heard it!" : "") + "</span></p>";
+      html += '<p class="meta">' + (c.minutes ? "About " + esc(c.minutes) + " minutes" : "") +
+        '<span class="heard">' + (listened.has(c.key) ? (c.minutes ? " · " : "") + "heard it!" : "") + "</span></p>";
+      html += '<p class="actions"><button type="button" class="read-btn">' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5C5.5 4.5 9 4.5 12 6.5c3-2 6.5-2 9-1V19c-2.5-1-6-1-9 1-3-2-6.5-2-9-1z M12 6.5V20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>' +
+        "Read along</button>" +
+        '<a class="save" href="' + esc(c.file) + '" download>Save for the car</a></p>';
     }
     html += "</div>";
     if (c.isReady) {
@@ -612,15 +692,85 @@
 
   function card(key) { return document.getElementById("card-" + key); }
 
+  // ── Read along ────────────────────────────────────────────
+  var reader = document.getElementById("reader-sheet");
+  var readerText = reader.querySelector(".rs-text");
+  var readerKey = null;
+  var textCache = {};
+  var SIZES = [20, 23, 27];
+  var sizeIdx = store.get("textSize", 0) % SIZES.length;
+  function applySize() { reader.style.setProperty("--rs-size", SIZES[sizeIdx] + "px"); }
+  applySize();
+
+  // Text comes from our own build of the Gutenberg edition (tools/build-text.py); only <i> survives in it.
+  function renderPages(data, title) {
+    return '<h3 class="rs-chtitle">' + esc(title) + "</h3>" + data.pages.map(function (pg, i) {
+      return '<section class="rpage" aria-label="Page ' + (i + 1) + '"><span class="pno" aria-hidden="true">' + (i + 1) + "</span>" +
+        pg.blocks.map(function (b) {
+          if (b.type === "img") return '<img src="art/book/' + esc(b.img) + '.png" alt="" loading="lazy">';
+          if (b.type === "p") return "<p>" + b.text + "</p>";
+          if (b.type === "verse") return '<p class="verse">' + b.lines.join("<br>") + "</p>";
+          return '<p class="orn" aria-hidden="true">* * *</p>';
+        }).join("") + "</section>";
+    }).join("") + '<p class="rs-end">The End of Chapter ' + esc(NUMS[data.number] || data.number) + "</p>";
+  }
+
+  function openReader(key) {
+    var c = chapters.filter(function (x) { return x.key === key; })[0];
+    if (!c) return;
+    readerKey = key;
+    reader.dataset.key = key;
+    reader.querySelector(".rs-label").textContent = "Chapter " + (NUMS[c.number] || c.number);
+    reader.querySelector(".rs-title").textContent = c.short;
+    readerText.innerHTML = '<p class="rs-loading">Opening the book…</p>';
+    var playingHere = current === key && !audio.paused;
+    reader.classList.toggle("playing", playingHere);
+    reader.querySelector(".play").setAttribute("aria-label", (playingHere ? "Pause " : "Play ") + items[key].title);
+    if (current === key) paint(key, audio.currentTime, audio.duration);
+    else paint(key, positions[key] ? positions[key].t : 0, durations[key] || (positions[key] && positions[key].d));
+    reader.showModal();
+    reader.querySelector(".rs-body").scrollTop = 0;
+    document.body.style.overflow = "hidden";
+    try { history.pushState({ reader: key }, ""); } catch (e) {}
+
+    var n = c.number;
+    (textCache[n] ? Promise.resolve(textCache[n]) : fetch("text/ch" + n + ".json").then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    })).then(function (data) {
+      textCache[n] = data;
+      if (readerKey === key) readerText.innerHTML = renderPages(data, c.title);
+    }).catch(function () {
+      if (readerKey === key) readerText.innerHTML = '<p class="rs-loading">The book wouldn’t open just now. Try again in a moment.</p>';
+    });
+  }
+
+  // Cleanup runs directly rather than only from the dialog's "close" event, which isn't reliably delivered.
+  function closeReader() {
+    if (reader.open) reader.close();
+    if (readerKey === null) return;
+    readerKey = null;
+    reader.classList.remove("playing");
+    document.body.style.overflow = "";
+    if (history.state && history.state.reader) history.back();
+  }
+  reader.addEventListener("cancel", function (e) { e.preventDefault(); closeReader(); });
+  reader.addEventListener("close", closeReader);
+  window.addEventListener("popstate", closeReader);
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && reader.open) { e.preventDefault(); closeReader(); }
+  });
+
   function paint(key, t, dur) {
-    var el = card(key);
-    if (!el) return;
     var pct = dur ? Math.min(100, (t / dur) * 100) : 0;
-    el.querySelector(".fill").style.width = pct + "%";
-    el.querySelector(".thumb").style.left = pct + "%";
-    el.querySelector(".bar").setAttribute("aria-valuenow", Math.round(pct));
-    el.querySelector(".bar").setAttribute("aria-valuetext", fmt(t) + (dur ? " of " + fmt(dur) : ""));
-    el.querySelector(".time").textContent = fmt(t) + (dur ? " / " + fmt(dur) : "");
+    [card(key), readerKey === key ? reader : null].forEach(function (el) {
+      if (!el) return;
+      el.querySelector(".fill").style.width = pct + "%";
+      el.querySelector(".thumb").style.left = pct + "%";
+      el.querySelector(".bar").setAttribute("aria-valuenow", Math.round(pct));
+      el.querySelector(".bar").setAttribute("aria-valuetext", fmt(t) + (dur ? " of " + fmt(dur) : ""));
+      el.querySelector(".time").textContent = fmt(t) + (dur ? " / " + fmt(dur) : "");
+    });
   }
 
   // Restore bars for stories left partway through.
@@ -696,7 +846,7 @@
     var tag = el.querySelector(".ready-tag");
     if (tag) tag.remove();
     var heard = el.querySelector(".heard");
-    if (heard) heard.textContent = " · heard it!";
+    if (heard) heard.textContent = (heard.previousSibling ? " · " : "") + "heard it!";
     renderShelf();
     var shelfPot = document.querySelector('#shelf [data-go="' + key + '"] .pot');
     if (shelfPot) {
@@ -710,7 +860,7 @@
   }
 
   function setPlaying(on) {
-    document.querySelectorAll(".card.playing").forEach(function (el) {
+    document.querySelectorAll("[data-key].playing").forEach(function (el) {
       el.classList.remove("playing");
       el.querySelector(".play").setAttribute("aria-label", "Play " + items[el.dataset.key].title);
     });
@@ -718,6 +868,10 @@
       var el = card(current);
       el.classList.add("playing", "started");
       el.querySelector(".play").setAttribute("aria-label", "Pause " + items[current].title);
+      if (readerKey === current) {
+        reader.classList.add("playing");
+        reader.querySelector(".play").setAttribute("aria-label", "Pause " + items[current].title);
+      }
     }
   }
 
@@ -748,12 +902,16 @@
     if (pr && pr.catch) pr.catch(function () {});
   }
 
-  document.querySelector(".book").addEventListener("click", function (e) {
+  document.addEventListener("click", function (e) {
+    var rb = e.target.closest(".read-btn");
+    if (rb) { openReader(rb.closest("[data-key]").dataset.key); return; }
+    if (e.target.closest(".rs-close")) { closeReader(); return; }
+    if (e.target.closest(".rs-size")) { sizeIdx = (sizeIdx + 1) % SIZES.length; store.set("textSize", sizeIdx); applySize(); return; }
     var chip = e.target.closest(".scene-chip");
-    if (chip) { start(chip.closest(".card").dataset.key, parseFloat(chip.dataset.t)); return; }
+    if (chip) { start(chip.closest("[data-key]").dataset.key, parseFloat(chip.dataset.t)); return; }
     var btn = e.target.closest(".play, .back");
     if (!btn) return;
-    var key = btn.closest(".card").dataset.key;
+    var key = btn.closest("[data-key]").dataset.key;
     if (btn.classList.contains("back")) {
       if (current === key) audio.currentTime = Math.max(0, audio.currentTime - 15);
       return;
@@ -811,7 +969,7 @@
 
   // Seeking on the honey bar (tap, drag, or arrow keys).
   function seekFromEvent(bar, e) {
-    var key = bar.closest(".card").dataset.key;
+    var key = bar.closest("[data-key]").dataset.key;
     if (current !== key) { start(key); return; }
     if (!audio.duration) return;
     var r = bar.getBoundingClientRect();
@@ -831,7 +989,7 @@
   document.addEventListener("pointerup", function () { dragging = null; });
   document.addEventListener("keydown", function (e) {
     var bar = e.target.closest && e.target.closest(".bar");
-    if (!bar || current !== bar.closest(".card").dataset.key) return;
+    if (!bar || current !== bar.closest("[data-key]").dataset.key) return;
     if (e.key === "ArrowRight") { audio.currentTime = Math.min(audio.duration, audio.currentTime + 10); e.preventDefault(); }
     if (e.key === "ArrowLeft") { audio.currentTime = Math.max(0, audio.currentTime - 10); e.preventDefault(); }
   });

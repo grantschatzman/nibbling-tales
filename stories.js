@@ -123,7 +123,7 @@ window.STORYBOOK = {
     {
       number: 10,
       short: "Pooh's Party",
-      title: "In Which Christopher Robin Gives Pooh a Party, and We Say Goodbye",
+      title: "In Which Christopher Robin Gives Pooh a Party, and We Say Good-bye",
       picture: "art/ch10.png",
       wash: "#F1D089",
       file: "audio/10-poohs-party.mp3",
