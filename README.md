@@ -14,6 +14,10 @@
 2. In `stories.js`, change that chapter's `status: "soon"` to `status: "ready"` and set `minutes`.
 3. Commit and push. GitHub Pages updates in a minute or two.
 
+### Scene markers (optional)
+
+In Audacity, click where a scene starts and press **Ctrl+B**, then type a short name ("The Balloon") and press Enter. Repeat for each scene; add one at 0:00 for the opening scene. Then **File → Export → Export Labels…** and save it into `audio/` with the same name as the mp3 but ending `.txt` (e.g. `audio/01-pooh-and-some-bees.txt`). The page picks it up automatically: ticks on the progress bar and tap-to-jump scene buttons. A label named just `page` is reserved and ignored.
+
 To tease the next one, set its `soonText` (e.g. `"Coming Saturday!"`).
 
 The welcome note card is hidden until `welcome.status` is `"ready"` and `audio/00-welcome.mp3` exists.

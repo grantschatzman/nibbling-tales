@@ -189,6 +189,17 @@
   .bar .fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--honey); }
   .bar .thumb { position: absolute; top: 50%; left: 0; width: 34px; height: 26px; transform: translate(-50%, -55%); pointer-events: none; }
   .time { flex: none; font-size: 14px; color: var(--ink-soft); font-variant-numeric: tabular-nums; min-width: 84px; text-align: right; }
+  .bar .tick { position: absolute; top: 50%; width: 3px; height: 16px; transform: translate(-50%, -50%); background: var(--ink-soft); border-radius: 2px; pointer-events: none; }
+  .scenes { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .scenes[hidden] { display: none; }
+  .scene-chip {
+    font: 500 15px var(--body); color: var(--ink); background: var(--paper);
+    border: 1.4px solid var(--ink-soft); border-radius: 999px; padding: 4px 12px; cursor: pointer;
+  }
+  .scene-chip small { color: var(--ink-soft); margin-left: 4px; font-variant-numeric: tabular-nums; }
+  .scene-chip.on { background: var(--honey); border-color: var(--ink); }
+  .scene-chip:focus-visible { outline: 3px solid var(--honey); outline-offset: 2px; }
+  .save { color: var(--ink-soft); text-underline-offset: 3px; }
   .oops { grid-column: 1 / -1; margin: 8px 0 0; font-style: italic; color: var(--honey-deep); display: none; }
   .card.missing .oops { display: block; }
 
@@ -476,9 +487,10 @@
     return '<div class="player">' +
       '<button type="button" class="back" aria-label="Go back 15 seconds">&#8634; 15</button>' +
       '<div class="bar" role="slider" tabindex="0" aria-label="Position in story" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">' +
-      '<div class="track"><div class="fill"></div></div>' +
+      '<div class="track"><div class="fill"></div></div><div class="ticks"></div>' +
       '<svg class="thumb" viewBox="0 0 40 30" aria-hidden="true"><use href="#bee"/></svg></div>' +
       '<span class="time">0:00</span></div>' +
+      '<div class="scenes" hidden></div>' +
       '<p class="oops">This recording is still buzzing its way here. Check back soon!</p>';
   }
 
@@ -523,7 +535,11 @@
       (c === newest ? '<span class="ready-tag">Ready!</span>' : "") + "</p>";
     html += "<h3>" + esc(c.short) + "</h3>";
     html += '<p class="full-title">' + esc(c.title) + "</p>";
-    if (c.isReady && c.minutes) html += '<p class="meta">About ' + esc(c.minutes) + " minutes" + (listened.has(c.key) ? " · heard it!" : "") + "</p>";
+    if (c.isReady) {
+      html += '<p class="meta">' + (c.minutes ? "About " + esc(c.minutes) + " minutes · " : "") +
+        '<a class="save" href="' + esc(c.file) + '" download>Save for the car</a>' +
+        '<span class="heard">' + (listened.has(c.key) ? " · heard it!" : "") + "</span></p>";
+    }
     html += "</div>";
     if (c.isReady) {
       html += playButton(num + ": " + c.short) + playerRow();
@@ -616,6 +632,58 @@
     }
   });
 
+  // Scene markers: an Audacity label export (File > Export > Export Labels) saved next to the mp3 as .txt.
+  var scenes = {};
+  var durations = {};
+  Object.keys(positions).forEach(function (k) { if (positions[k] && positions[k].d) durations[k] = positions[k].d; });
+
+  function parseLabels(txt) {
+    return txt.split(/\r?\n/).map(function (line) {
+      var parts = line.split("\t");
+      var t = parseFloat(parts[0]);
+      var name = (parts[2] || "").trim();
+      return isFinite(t) && name && name.toLowerCase() !== "page" ? { t: t, name: name } : null;
+    }).filter(Boolean).sort(function (a, b) { return a.t - b.t; });
+  }
+
+  function drawTicks(key) {
+    var el = card(key), d = durations[key], list = scenes[key];
+    if (!el || !d || !list) return;
+    el.querySelector(".ticks").innerHTML = list.filter(function (s) { return s.t > 1; }).map(function (s) {
+      return '<span class="tick" style="left:' + Math.min(100, (s.t / d) * 100) + '%"></span>';
+    }).join("");
+  }
+
+  function markScene(key, t) {
+    var list = scenes[key];
+    if (!list) return;
+    var idx = -1;
+    list.forEach(function (s, i) { if (t >= s.t - 0.5) idx = i; });
+    card(key).querySelectorAll(".scene-chip").forEach(function (c, i) { c.classList.toggle("on", i === idx); });
+  }
+
+  Object.keys(items).forEach(function (key) {
+    var labelFile = items[key].file.replace(/\.mp3$/i, ".txt");
+    fetch(labelFile).then(function (r) { return r.ok ? r.text() : ""; }).then(function (txt) {
+      var list = parseLabels(txt);
+      if (!list.length) return;
+      scenes[key] = list;
+      var box = card(key).querySelector(".scenes");
+      box.innerHTML = list.map(function (s) {
+        return '<button type="button" class="scene-chip" data-t="' + s.t + '">' + esc(s.name) + "<small>" + fmt(s.t) + "</small></button>";
+      }).join("");
+      box.hidden = false;
+      drawTicks(key);
+      if (positions[key]) markScene(key, positions[key].t);
+    }).catch(function () {});
+  });
+
+  audio.addEventListener("loadedmetadata", function () {
+    if (!current) return;
+    durations[current] = audio.duration;
+    drawTicks(current);
+  });
+
   function markListened(key) {
     if (listened.has(key)) return;
     listened.add(key);
@@ -627,8 +695,8 @@
     el.classList.remove("newest");
     var tag = el.querySelector(".ready-tag");
     if (tag) tag.remove();
-    var meta = el.querySelector(".meta");
-    if (meta && meta.textContent.indexOf("heard") < 0) meta.textContent += " · heard it!";
+    var heard = el.querySelector(".heard");
+    if (heard) heard.textContent = " · heard it!";
     renderShelf();
     var shelfPot = document.querySelector('#shelf [data-go="' + key + '"] .pot');
     if (shelfPot) {
@@ -653,17 +721,18 @@
     }
   }
 
-  function start(key) {
+  function start(key, at) {
     var el = card(key);
     if (current !== key) {
       current = key;
       el.classList.remove("missing");
       audio.src = items[key].file;
       var saved = positions[key];
-      if (saved && saved.t > 3) {
+      var target = at != null ? at : (saved && saved.t > 3 ? saved.t : null);
+      if (target != null) {
         audio.addEventListener("loadedmetadata", function once() {
           audio.removeEventListener("loadedmetadata", once);
-          if (saved.t < audio.duration - 5) audio.currentTime = saved.t;
+          if (target < audio.duration - 5) audio.currentTime = target;
         });
       }
       if ("mediaSession" in navigator) {
@@ -674,11 +743,14 @@
         });
       }
     }
+    else if (at != null) audio.currentTime = at;
     var pr = audio.play();
     if (pr && pr.catch) pr.catch(function () {});
   }
 
   document.querySelector(".book").addEventListener("click", function (e) {
+    var chip = e.target.closest(".scene-chip");
+    if (chip) { start(chip.closest(".card").dataset.key, parseFloat(chip.dataset.t)); return; }
     var btn = e.target.closest(".play, .back");
     if (!btn) return;
     var key = btn.closest(".card").dataset.key;
@@ -721,6 +793,7 @@
   audio.addEventListener("timeupdate", function () {
     if (!current) return;
     paint(current, audio.currentTime, audio.duration);
+    markScene(current, audio.currentTime);
     savePos(false);
     if (audio.duration && audio.currentTime / audio.duration > 0.92) markListened(current);
   });
