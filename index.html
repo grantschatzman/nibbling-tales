@@ -1042,6 +1042,9 @@
   audio.addEventListener("loadedmetadata", function () {
     if (!current) return;
     durations[current] = audio.duration;
+    if (!audio.seekable.length || audio.seekable.end(0) < 1) {
+      console.warn("This server can't seek within audio, so page turns, scenes and the progress bar will snap back to the start. Preview with: npx http-server -p 8765 -c-1");
+    }
     drawTicks(current);
   });
 

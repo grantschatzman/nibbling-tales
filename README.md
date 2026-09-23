@@ -28,6 +28,14 @@ To tease the next one, set its `soonText` (e.g. `"Coming Saturday!"`).
 
 The welcome note card is hidden until `welcome.status` is `"ready"` and `audio/00-welcome.mp3` exists.
 
+## Previewing locally
+
+```
+npx http-server -p 8765 -c-1
+```
+
+then open http://localhost:8765. Don't use `python -m http.server`: it can't serve part of a file, so the audio can't jump and page turns, scene buttons and the progress bar all snap back to the start. `-c-1` turns off caching so edits show up on refresh.
+
 ## What the page remembers
 
 Per device, in the browser: which chapters have been heard (filled honey pots), where each story was paused, and which new chapters have already had their bee welcome. Nothing is sent anywhere.
