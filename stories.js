@@ -11,7 +11,7 @@
 
 window.STORYBOOK = {
   dedication: {
-    forNames: "Mia, Theo & June",
+    forNames: "Brooks & Norah",
     fromLine: "with love from",
     fromName: "Uncle Grant",
     // Optional extra line under the names, like the small print in a book. Leave "" for none.
