@@ -253,6 +253,46 @@
   .rs-foot .play svg { width: 22px; height: 22px; }
   .reader-sheet.playing .play .i-play { display: none; }
   .reader-sheet.playing .play .i-pause { display: block; }
+
+  .rpage.now::before { content: ""; position: absolute; left: -12px; top: 18px; bottom: 10px; width: 3px; border-radius: 2px; background: var(--honey); }
+  .rs-mode-row { display: flex; justify-content: center; padding: 8px 12px; border-bottom: 1px solid var(--ink-faint); background: var(--paper); }
+  .rs-mode-row[hidden] { display: none; }
+  .rs-mode-row button {
+    font: 500 15px var(--body); color: var(--ink); background: var(--paper); cursor: pointer;
+    border: 1.4px solid var(--ink-soft); padding: 5px 16px;
+  }
+  .rs-mode-row button:first-child { border-radius: 999px 0 0 999px; }
+  .rs-mode-row button:last-child { border-radius: 0 999px 999px 0; border-left: 0; }
+  .rs-mode-row button[aria-pressed="true"] { background: var(--honey); border-color: var(--ink); }
+  .rs-mode-row button:focus-visible { outline: 3px solid var(--honey); outline-offset: 2px; }
+
+  .reader-sheet.paged .rs-chtitle { display: none; }
+  .reader-sheet.paged.first-page .rs-chtitle { display: block; }
+  .reader-sheet.paged .rpage { display: none; border-top: 0; padding-top: 10px; }
+  .reader-sheet.paged .rpage.shown { display: block; animation: pagein .45s ease both; }
+  .reader-sheet.paged .rpage.now::before, .reader-sheet.paged .pno { display: none; }
+  .reader-sheet.paged .rpage img { max-height: 38vh; }
+  @keyframes pagein { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: none; } }
+
+  .rs-pnav { display: none; align-items: center; gap: 10px; padding: 8px 14px; border-top: 1px solid var(--ink-faint); background: var(--paper); }
+  .reader-sheet.paged .rs-pnav { display: flex; }
+  .pn-btn {
+    flex: none; width: 58px; height: 58px; border-radius: 50%; cursor: pointer; color: var(--ink);
+    border: 1.6px solid var(--ink); background: var(--card); display: grid; place-items: center;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .pn-btn svg { width: 26px; height: 26px; }
+  .pn-btn:disabled { opacity: .3; cursor: default; }
+  .pn-btn:focus-visible { outline: 3px solid var(--honey); outline-offset: 2px; }
+  .pn-mid { flex: 1; text-align: center; }
+  .pn-count { font-family: var(--display-sc); font-size: 16px; letter-spacing: .05em; color: var(--ink-soft); }
+  .pn-cue { display: none; align-items: center; justify-content: center; gap: 6px; font-family: var(--display); font-style: italic; font-size: 21px; }
+  .pn-cue svg { width: 34px; height: 26px; animation: bob 1.6s ease-in-out infinite; }
+  .reader-sheet.await-turn .pn-count { display: none; }
+  .reader-sheet.await-turn .pn-cue { display: flex; }
+  .reader-sheet.await-turn .pn-next { background: var(--honey); animation: glow 1.8s ease-in-out infinite; }
+  .pn-next.not-yet { animation: nope .4s ease; }
+  @keyframes nope { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
   .oops { grid-column: 1 / -1; margin: 8px 0 0; font-style: italic; color: var(--honey-deep); display: none; }
   .card.missing .oops { display: block; }
 
@@ -481,7 +521,19 @@
     <button type="button" class="rs-btn rs-size" aria-label="Change text size"><span aria-hidden="true">A<span>A</span></span></button>
     <button type="button" class="rs-btn rs-close" aria-label="Close the book"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
   </div>
+  <div class="rs-mode-row" role="group" aria-label="How to read" hidden>
+    <button type="button" data-mode="pages" aria-pressed="true">Turn the pages</button>
+    <button type="button" data-mode="scroll" aria-pressed="false">Scroll</button>
+  </div>
   <div class="rs-body"><div class="rs-text"></div></div>
+  <div class="rs-pnav">
+    <button type="button" class="pn-btn pn-prev" aria-label="Previous page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <div class="pn-mid" aria-live="polite">
+      <span class="pn-count"></span>
+      <span class="pn-cue"><svg viewBox="0 0 40 30" aria-hidden="true"><use href="#bee"/></svg>Turn the page!</span>
+    </div>
+    <button type="button" class="pn-btn pn-next" aria-label="Next page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
   <div class="rs-foot">
     <button type="button" class="play" aria-label="Play">
       <svg class="i-play" aria-hidden="true"><use href="#i-play"/></svg>
@@ -704,6 +756,7 @@
 
   // Text comes from our own build of the Gutenberg edition (tools/build-text.py); only <i> survives in it.
   function renderPages(data, title) {
+    var last = data.pages.length - 1;
     return '<h3 class="rs-chtitle">' + esc(title) + "</h3>" + data.pages.map(function (pg, i) {
       return '<section class="rpage" aria-label="Page ' + (i + 1) + '"><span class="pno" aria-hidden="true">' + (i + 1) + "</span>" +
         pg.blocks.map(function (b) {
@@ -711,8 +764,128 @@
           if (b.type === "p") return "<p>" + b.text + "</p>";
           if (b.type === "verse") return '<p class="verse">' + b.lines.join("<br>") + "</p>";
           return '<p class="orn" aria-hidden="true">* * *</p>';
-        }).join("") + "</section>";
-    }).join("") + '<p class="rs-end">The End of Chapter ' + esc(NUMS[data.number] || data.number) + "</p>";
+        }).join("") +
+        (i === last ? '<p class="rs-end">The End of Chapter ' + esc(NUMS[data.number] || data.number) + "</p>" : "") +
+        "</section>";
+    }).join("");
+  }
+
+  // ── Turn the pages ────────────────────────────────────────
+  // Page N+1 starts at the Nth "page" label. At each boundary the story pauses until the page is turned.
+  var readMode = store.get("readMode", "pages") === "scroll" ? "scroll" : "pages";
+  var pagesOk = false;
+  var pageCount = 0;
+  var pg = 0;
+  var awaitingTurn = false;
+  var raf = 0;
+
+  function isPaged() { return pagesOk && readMode === "pages" && reader.open; }
+  function bounds() { return pageTimes[readerKey] || []; }
+  function pageStart(i) { return i <= 0 ? 0 : bounds()[i - 1]; }
+  function pageEnd(i) { return i < bounds().length ? bounds()[i] : Infinity; }
+  function pageAt(t) {
+    var b = bounds(), i = 0;
+    while (i < b.length && b[i] <= t + 0.02) i++;
+    return i;
+  }
+  function readerTime() {
+    if (current === readerKey) return audio.currentTime;
+    return positions[readerKey] ? positions[readerKey].t : 0;
+  }
+  function playingHere() { return current === readerKey && !audio.paused; }
+
+  function updateNav() {
+    if (!pagesOk) return;
+    reader.classList.toggle("await-turn", awaitingTurn);
+    reader.classList.toggle("first-page", pg === 0);
+    reader.querySelector(".pn-prev").disabled = pg === 0;
+    reader.querySelector(".pn-next").disabled = pg >= pageCount - 1 || (!awaitingTurn && playingHere());
+    reader.querySelector(".pn-count").textContent = "Page " + (pg + 1) + " of " + pageCount;
+  }
+
+  function showPage(i) {
+    i = Math.max(0, Math.min(pageCount - 1, i));
+    var changed = i !== pg;
+    pg = i;
+    readerText.querySelectorAll(".rpage").forEach(function (s, k) {
+      s.classList.toggle("shown", k === i);
+      s.classList.toggle("now", k === i);
+    });
+    if (changed && isPaged()) reader.querySelector(".rs-body").scrollTop = 0;
+    updateNav();
+  }
+
+  function setAwaiting(on) { awaitingTurn = on; updateNav(); }
+
+  function seekReader(t) {
+    if (current === readerKey) { audio.currentTime = t; return; }
+    positions[readerKey] = { t: t, d: durations[readerKey] || 0 };
+    store.set("positions", positions);
+    paint(readerKey, t, durations[readerKey]);
+  }
+
+  function tryNext() {
+    if (!isPaged() || pg >= pageCount - 1) return;
+    if (awaitingTurn) {
+      setAwaiting(false);
+      showPage(pg + 1);
+      start(readerKey, pageStart(pg));
+    } else if (playingHere()) {
+      var nb = reader.querySelector(".pn-next");
+      nb.classList.remove("not-yet");
+      void nb.offsetWidth;
+      nb.classList.add("not-yet");
+    } else {
+      showPage(pg + 1);
+      seekReader(pageStart(pg));
+    }
+  }
+
+  function prevPage() {
+    if (!isPaged() || pg === 0) return;
+    setAwaiting(false);
+    showPage(pg - 1);
+    seekReader(pageStart(pg));
+  }
+
+  function checkBoundary() {
+    // Seeks are handled by the "seeked" listener; anything past the page end here is playback overshoot.
+    if (!isPaged() || current !== readerKey || awaitingTurn || audio.seeking) return;
+    var t = audio.currentTime;
+    if (audio.paused || t < pageEnd(pg) - 0.08) return;
+    if (document.hidden) { showPage(pageAt(t)); return; }
+    audio.pause();
+    audio.currentTime = pageEnd(pg);
+    setAwaiting(true);
+  }
+
+  function tick() {
+    raf = 0;
+    if (!isPaged() || !playingHere()) return;
+    checkBoundary();
+    raf = requestAnimationFrame(tick);
+  }
+  function kick() { if (!raf && isPaged() && playingHere()) raf = requestAnimationFrame(tick); }
+
+  function applyMode() {
+    var row = reader.querySelector(".rs-mode-row");
+    row.hidden = !pagesOk;
+    reader.classList.toggle("paged", pagesOk && readMode === "pages");
+    row.querySelectorAll("button").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.dataset.mode === readMode));
+    });
+    setAwaiting(false);
+    if (pagesOk) showPage(pageAt(readerTime()));
+    kick();
+  }
+
+  function setupPages(data) {
+    var b = pageTimes[readerKey];
+    pageCount = data.pages.length;
+    pagesOk = !!b && b.length === pageCount - 1;
+    if (b && !pagesOk) console.warn("Page labels don't match the text: " + b.length + " labels for " + pageCount + " pages (need " + (pageCount - 1) + ").");
+    pg = -1;
+    applyMode();
   }
 
   function openReader(key) {
@@ -723,6 +896,10 @@
     reader.querySelector(".rs-label").textContent = "Chapter " + (NUMS[c.number] || c.number);
     reader.querySelector(".rs-title").textContent = c.short;
     readerText.innerHTML = '<p class="rs-loading">Opening the book…</p>';
+    pagesOk = false;
+    awaitingTurn = false;
+    reader.classList.remove("paged", "await-turn");
+    reader.querySelector(".rs-mode-row").hidden = true;
     var playingHere = current === key && !audio.paused;
     reader.classList.toggle("playing", playingHere);
     reader.querySelector(".play").setAttribute("aria-label", (playingHere ? "Pause " : "Play ") + items[key].title);
@@ -739,7 +916,9 @@
       return r.json();
     })).then(function (data) {
       textCache[n] = data;
-      if (readerKey === key) readerText.innerHTML = renderPages(data, c.title);
+      if (readerKey !== key) return;
+      readerText.innerHTML = renderPages(data, c.title);
+      setupPages(data);
     }).catch(function () {
       if (readerKey === key) readerText.innerHTML = '<p class="rs-loading">The book wouldn’t open just now. Try again in a moment.</p>';
     });
@@ -750,7 +929,9 @@
     if (reader.open) reader.close();
     if (readerKey === null) return;
     readerKey = null;
-    reader.classList.remove("playing");
+    pagesOk = false;
+    awaitingTurn = false;
+    reader.classList.remove("playing", "paged", "await-turn");
     document.body.style.overflow = "";
     if (history.state && history.state.reader) history.back();
   }
@@ -758,7 +939,24 @@
   reader.addEventListener("close", closeReader);
   window.addEventListener("popstate", closeReader);
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && reader.open) { e.preventDefault(); closeReader(); }
+    if (!reader.open) return;
+    if (e.key === "Escape") { e.preventDefault(); closeReader(); return; }
+    if (e.target.closest && e.target.closest(".bar")) return;
+    if (e.key === "ArrowRight" && isPaged()) { e.preventDefault(); tryNext(); }
+    if (e.key === "ArrowLeft" && isPaged()) { e.preventDefault(); prevPage(); }
+  });
+
+  // Swipe to turn; a tap on the page also turns it once the page has finished.
+  var swipe = null;
+  reader.querySelector(".rs-body").addEventListener("pointerdown", function (e) {
+    swipe = isPaged() ? { x: e.clientX, y: e.clientY } : null;
+  });
+  reader.querySelector(".rs-body").addEventListener("pointerup", function (e) {
+    if (!swipe) return;
+    var dx = e.clientX - swipe.x, dy = e.clientY - swipe.y;
+    swipe = null;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) { if (dx < 0) tryNext(); else prevPage(); }
+    else if (Math.abs(dx) < 10 && Math.abs(dy) < 10 && awaitingTurn) tryNext();
   });
 
   function paint(key, t, dur) {
@@ -787,13 +985,24 @@
   var durations = {};
   Object.keys(positions).forEach(function (k) { if (positions[k] && positions[k].d) durations[k] = positions[k].d; });
 
+  var pageTimes = {};
+
+  // Labels named "page" mark page turns; any other non-empty name is a scene.
   function parseLabels(txt) {
-    return txt.split(/\r?\n/).map(function (line) {
+    var found = { scenes: [], pages: [] };
+    txt.split(/\r?\n/).forEach(function (line) {
       var parts = line.split("\t");
       var t = parseFloat(parts[0]);
       var name = (parts[2] || "").trim();
-      return isFinite(t) && name && name.toLowerCase() !== "page" ? { t: t, name: name } : null;
-    }).filter(Boolean).sort(function (a, b) { return a.t - b.t; });
+      if (!isFinite(t) || !name) return;
+      if (name.toLowerCase() === "page") found.pages.push(t);
+      else found.scenes.push({ t: t, name: name });
+    });
+    found.scenes.sort(function (a, b) { return a.t - b.t; });
+    if (found.scenes.length && found.scenes[0].t > 5) found.scenes.unshift({ t: 0, name: "The Beginning" });
+    found.pages.sort(function (a, b) { return a - b; });
+    found.pages = found.pages.filter(function (t, i, arr) { return i === 0 || t - arr[i - 1] > 0.1; });
+    return found;
   }
 
   function drawTicks(key) {
@@ -815,7 +1024,9 @@
   Object.keys(items).forEach(function (key) {
     var labelFile = items[key].file.replace(/\.mp3$/i, ".txt");
     fetch(labelFile).then(function (r) { return r.ok ? r.text() : ""; }).then(function (txt) {
-      var list = parseLabels(txt);
+      var found = parseLabels(txt);
+      if (found.pages.length) pageTimes[key] = found.pages;
+      var list = found.scenes;
       if (!list.length) return;
       scenes[key] = list;
       var box = card(key).querySelector(".scenes");
@@ -907,6 +1118,11 @@
     if (rb) { openReader(rb.closest("[data-key]").dataset.key); return; }
     if (e.target.closest(".rs-close")) { closeReader(); return; }
     if (e.target.closest(".rs-size")) { sizeIdx = (sizeIdx + 1) % SIZES.length; store.set("textSize", sizeIdx); applySize(); return; }
+    var modeBtn = e.target.closest(".rs-mode-row button");
+    if (modeBtn) { readMode = modeBtn.dataset.mode; store.set("readMode", readMode); applyMode(); return; }
+    if (e.target.closest(".pn-next")) { tryNext(); return; }
+    if (e.target.closest(".pn-prev")) { prevPage(); return; }
+    if (awaitingTurn && e.target.closest("#reader-sheet .play")) { tryNext(); return; }
     var chip = e.target.closest(".scene-chip");
     if (chip) { start(chip.closest("[data-key]").dataset.key, parseFloat(chip.dataset.t)); return; }
     var btn = e.target.closest(".play, .back");
@@ -928,8 +1144,13 @@
     } catch (e) {}
   }
 
-  audio.addEventListener("play", function () { setPlaying(true); });
-  audio.addEventListener("pause", function () { setPlaying(false); savePos(true); });
+  audio.addEventListener("play", function () { setPlaying(true); updateNav(); kick(); });
+  audio.addEventListener("pause", function () { setPlaying(false); savePos(true); updateNav(); });
+  audio.addEventListener("seeked", function () {
+    if (!isPaged() || current !== readerKey) return;
+    if (awaitingTurn && Math.abs(audio.currentTime - pageEnd(pg)) > 0.3) setAwaiting(false);
+    if (!awaitingTurn) showPage(pageAt(audio.currentTime));
+  });
   audio.addEventListener("error", function () {
     if (!current || !audio.getAttribute("src")) return;
     setPlaying(false);
@@ -952,6 +1173,10 @@
     if (!current) return;
     paint(current, audio.currentTime, audio.duration);
     markScene(current, audio.currentTime);
+    if (reader.open && pagesOk && current === readerKey) {
+      if (isPaged()) checkBoundary();
+      else if (pageAt(audio.currentTime) !== pg) showPage(pageAt(audio.currentTime));
+    }
     savePos(false);
     if (audio.duration && audio.currentTime / audio.duration > 0.92) markListened(current);
   });
