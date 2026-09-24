@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Winnie-the-Pooh, Read Aloud</title>
+<meta name="description" content="Winnie-the-Pooh, read aloud one chapter at a time.">
+<meta property="og:title" content="Winnie-the-Pooh, read aloud">
+<meta property="og:description" content="A new chapter every so often. Come and listen!">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 66'%3E%3Cpath d='M18 17C6 23 4 45 12 55c6 7 30 7 36 0 8-10 6-32-6-38z' fill='%23E3A51F' stroke='%233E2F23' stroke-width='3'/%3E%3Crect x='15' y='9' width='30' height='8' rx='3' fill='%23C99A5E' stroke='%233E2F23' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FBF3E1;
+    --paper-deep: #F3E6C8;
+    --card: #FFF9EC;
+    --ink: #3E2F23;
+    --ink-soft: #6B5846;
+    --ink-faint: #A8957C;
+    --honey: #E3A51F;
+    --honey-deep: #B97A10;
+    --honey-glow: rgba(227, 165, 31, 0.45);
+    --sage: #94AD78;
+    --sky: #C9DCE6;
+    --blush: #E7A9A0;
+    --radius: 20px 24px 18px 26px;
+    --display: "IM Fell English", "EB Garamond", Georgia, serif;
+    --display-sc: "IM Fell English SC", "IM Fell English", Georgia, serif;
+    --body: "EB Garamond", Georgia, serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 19px;
+    line-height: 1.5;
+    background-color: var(--paper);
+    background-image:
+      radial-gradient(ellipse at 50% 0%, rgba(255,255,255,.55), transparent 60%),
+      radial-gradient(ellipse at 50% 100%, rgba(185,122,16,.10), transparent 70%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .33 0 0 0 0 .18 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+    background-attachment: fixed, fixed, scroll;
+  }
+
+  .defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+  .book { max-width: 680px; margin: 0 auto; padding: 0 16px 64px; }
+
+  /* ── Title page ── */
+  .title-page { text-align: center; padding-top: 36px; }
+  .title-page h1 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(44px, 11vw, 76px);
+    line-height: 1;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .byline { font-style: italic; color: var(--ink-soft); margin: 10px 0 0; font-size: 18px; }
+  .reader { font-family: var(--display-sc); font-size: 20px; margin: 4px 0 0; letter-spacing: .04em; }
+  .scene {
+    display: block; width: 100%; height: auto; margin: 8px 0 0;
+    -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 52%, #000 62%, transparent 100%);
+    mask-image: radial-gradient(ellipse 50% 50% at 50% 52%, #000 62%, transparent 100%);
+  }
+
+  /* ── Dedication ── */
+  .dedication {
+    text-align: center;
+    margin: 28px auto 8px;
+    padding: 28px 12px 24px;
+    max-width: 440px;
+    position: relative;
+  }
+  .dedication::before, .dedication::after {
+    content: "";
+    display: block;
+    height: 12px;
+    margin: 0 auto;
+    width: 70%;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 12'%3E%3Cpath d='M2 6 Q75 1 150 6 T298 6' fill='none' stroke='%236B5846' stroke-width='1.2'/%3E%3Ccircle cx='150' cy='6' r='2.6' fill='%23E3A51F' stroke='%236B5846'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  }
+  .dedication .for { font-family: var(--display); font-style: italic; font-size: 22px; color: var(--ink-soft); margin: 18px 0 0; }
+  .dedication .names { font-family: var(--display); font-style: italic; font-size: clamp(30px, 8vw, 40px); line-height: 1.15; margin: 2px 0 14px; }
+  .dedication .message { font-style: italic; color: var(--ink-soft); margin: 0 0 12px; }
+  .dedication .from { margin: 0 0 18px; font-size: 19px; }
+  .dedication .from span { display: block; font-family: var(--display-sc); font-size: 22px; letter-spacing: .03em; }
+  .dedication .bee-vignette { width: 44px; height: 34px; display: block; margin: 0 auto 6px; }
+
+  /* ── Section headings ── */
+  .section-head { text-align: center; margin: 40px 0 16px; }
+  .section-head h2 { font-family: var(--display); font-weight: 400; font-size: 32px; margin: 0; line-height: 1.1; }
+  .section-head p { margin: 6px 0 0; color: var(--ink-soft); font-style: italic; }
+
+  /* ── Honey shelf ── */
+  .shelf {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 4px;
+    align-items: end;
+    padding: 14px 10px 0;
+    margin: 0 0 4px;
+    position: relative;
+  }
+  .shelf::after {
+    content: "";
+    position: absolute; left: 0; right: 0; bottom: -10px; height: 14px;
+    background: #B08556;
+    border: 1.6px solid var(--ink);
+    border-radius: 3px 5px 4px 3px;
+    box-shadow: 0 6px 0 -2px rgba(62,47,35,.18);
+  }
+  .shelf button {
+    background: none; border: 0; padding: 0; cursor: pointer;
+    display: flex; flex-direction: column; align-items: center;
+    font: inherit; color: var(--ink-soft);
+    border-radius: 10px;
+  }
+  .shelf button .pot { width: 100%; max-width: 52px; height: auto; }
+  .shelf button:focus-visible { outline: 3px solid var(--honey); outline-offset: 2px; }
+  .shelf-note { text-align: center; margin: 26px 0 0; font-style: italic; color: var(--ink-soft); }
+
+  /* ── Cards ── */
+  .chapters { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+  .card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 110px 1fr auto;
+    align-items: center;
+    gap: 6px 16px;
+    padding: 16px 16px 16px 14px;
+    background: var(--card);
+    border: 1.6px solid var(--ink);
+    border-radius: var(--radius);
+    box-shadow: 3px 4px 0 rgba(62,47,35,.12);
+    scroll-margin-top: 20px;
+  }
+  .card .art { width: 110px; height: 100px; position: relative; display: grid; place-items: center; }
+  .card .art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .card .art img { position: relative; max-width: 100%; max-height: 100%; display: block; }
+  .card .label {
+    font-family: var(--display-sc); font-size: 16px; letter-spacing: .06em; color: var(--ink-soft);
+    display: flex; align-items: center; gap: 6px; margin: 0;
+  }
+  .card .label .pot { width: 20px; height: 22px; flex: none; }
+  .card h3 { font-family: var(--display); font-weight: 400; font-size: 26px; line-height: 1.1; margin: 2px 0 4px; }
+  .card .full-title { font-style: italic; color: var(--ink-soft); font-size: 15.5px; line-height: 1.3; margin: 0; }
+  .card .meta { font-size: 15px; color: var(--ink-soft); margin: 6px 0 0; }
+
+  .play {
+    width: 68px; height: 68px; border-radius: 50%;
+    border: 2px solid var(--ink);
+    background: var(--honey);
+    box-shadow: 2px 3px 0 rgba(62,47,35,.25), inset 0 -6px 0 rgba(185,122,16,.35);
+    display: grid; place-items: center;
+    cursor: pointer; padding: 0;
+    transition: transform .15s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .play:hover { transform: scale(1.05); }
+  .play:active { transform: scale(.96); }
+  .play:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+  .play svg { width: 28px; height: 28px; }
+  .play .i-pause { display: none; }
+  .card.playing .play .i-play { display: none; }
+  .card.playing .play .i-pause { display: block; }
+
+  /* player row */
+  .player { grid-column: 1 / -1; display: none; align-items: center; gap: 10px; margin-top: 10px; }
+  .card.started .player { display: flex; }
+  .back {
+    flex: none; border: 1.4px solid var(--ink-soft); background: transparent; color: var(--ink);
+    border-radius: 999px; font: 500 14px var(--body); padding: 4px 10px; cursor: pointer;
+  }
+  .back:focus-visible { outline: 3px solid var(--honey); outline-offset: 2px; }
+  .bar {
+    position: relative; flex: 1; height: 30px; cursor: pointer; touch-action: none;
+  }
+  .bar:focus-visible { outline: 3px solid var(--honey); outline-offset: 2px; border-radius: 8px; }
+  .bar .track {
+    position: absolute; left: 0; right: 0; top: 50%; height: 8px; transform: translateY(-50%);
+    border-radius: 6px; background: var(--paper-deep); border: 1.2px solid var(--ink-soft); overflow: hidden;
+  }
+  .bar .fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--honey); }
+  .bar .thumb { position: absolute; top: 50%; left: 0; width: 34px; height: 26px; transform: translate(-50%, -55%); pointer-events: none; }
+  .time { flex: none; font-size: 14px; color: var(--ink-soft); font-variant-numeric: tabular-nums; min-width: 84px; text-align: right; }
+  .bar .tick { position: absolute; top: 50%; width: 3px; height: 16px; transform: translate(-50%, -50%); background: var(--ink-soft); border-radius: 2px; pointer-events: none; }
+  .scenes { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .scenes[hidden] { display: none; }
+  .scene-chip {
+    font: 500 15px var(--body); color: var(--ink); background: var(--paper);
+    border: 1.4px solid var(--ink-soft); border-radius: 999px; padding: 4px 12px; cursor: pointer;
+  }
+  .scene-chip small { color: var(--ink-soft); margin-left: 4px; font-variant-numeric: tabular-nums; }
+  .scene-chip.on { background: var(--honey); border-color: var(--ink); }
+  .scene-chip:focus-visible { outline: 3px solid var(--honey); outline-offset: 2px; }
+  .save { color: var(--ink-soft); text-underline-offset: 3px; font-size: 15px; }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin: 8px 0 0; }
+  .read-btn {
+    display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+    font: 500 15px var(--body); color: var(--ink); background: var(--paper);
+    border: 1.4px solid var(--ink-soft); border-radius: 999px; padding: 3px 12px 3px 10px;
+  }
+  .read-btn svg { width: 18px; height: 18px; }
+  .read-btn:hover { background: var(--paper-deep); }
+  .read-btn:focus-visible { outline: 3px solid var(--honey); outline-offset: 2px; }
+
+  /* the book, opened */
+  .reader-sheet {
+    border: 0; padding: 0; margin: 0; width: 100%; height: 100%; max-width: none; max-height: none;
+    background: var(--paper); color: var(--ink);
+  }
+  .reader-sheet[open] { display: flex; flex-direction: column; }
+  .reader-sheet::backdrop { background: rgba(62,47,35,.45); }
+  @media (min-width: 820px) {
+    .reader-sheet { width: 760px; height: calc(100% - 40px); margin: 20px auto; border: 1.6px solid var(--ink); border-radius: var(--radius); }
+  }
+  .rs-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px 10px 20px; border-bottom: 1.2px solid var(--ink-faint); background: var(--card); }
+  .rs-heading { flex: 1; min-width: 0; }
+  .rs-label { margin: 0; font-family: var(--display-sc); font-size: 14px; letter-spacing: .06em; color: var(--ink-soft); }
+  .rs-title { margin: 0; font-family: var(--display); font-weight: 400; font-size: 24px; line-height: 1.15; }
+  .rs-btn {
+    flex: none; width: 46px; height: 46px; border-radius: 50%; cursor: pointer; color: var(--ink);
+    border: 1.4px solid var(--ink-soft); background: var(--paper); display: grid; place-items: center;
+    font: 500 17px var(--body);
+  }
+  .rs-btn span span { font-size: 23px; }
+  .rs-btn svg { width: 20px; height: 20px; }
+  .rs-btn:focus-visible { outline: 3px solid var(--honey); outline-offset: 2px; }
+  .rs-body { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; padding: 8px 22px 40px; }
+  .rs-text { max-width: 34em; margin: 0 auto; font-size: var(--rs-size, 20px); line-height: 1.6; }
+  .rs-chtitle { font-family: var(--display); font-style: italic; font-weight: 400; font-size: 1.05em; text-align: center; color: var(--ink-soft); margin: 18px 0 4px; }
+  .rs-loading { text-align: center; font-style: italic; color: var(--ink-soft); margin-top: 40px; }
+  .rpage { position: relative; padding: 18px 0 6px; }
+  .rpage + .rpage { border-top: 1px dashed var(--ink-faint); }
+  .rpage .pno { position: absolute; top: 6px; right: 0; font-family: var(--display-sc); font-size: 14px; color: var(--ink-faint); }
+  .rpage p { margin: 0 0 .7em; }
+  .rpage img { display: block; max-width: min(100%, 380px); max-height: 300px; height: auto; margin: 8px auto 16px; }
+  .rpage .verse { font-style: italic; padding-left: 1.4em; }
+  .rpage .verse i { font-style: normal; }
+  .rpage .orn { text-align: center; color: var(--ink-faint); letter-spacing: .5em; }
+  .rs-end { text-align: center; font-family: var(--display-sc); letter-spacing: .06em; color: var(--ink-soft); margin: 28px 0 0; }
+  .rs-foot {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); border-top: 1.2px solid var(--ink-faint); background: var(--card);
+  }
+  .rs-foot .play { width: 54px; height: 54px; flex: none; }
+  .rs-foot .play svg { width: 22px; height: 22px; }
+  .reader-sheet.playing .play .i-play { display: none; }
+  .reader-sheet.playing .play .i-pause { display: block; }
+
+  .rpage.now::before { content: ""; position: absolute; left: -12px; top: 18px; bottom: 10px; width: 3px; border-radius: 2px; background: var(--honey); }
+  .rs-mode-row { display: flex; justify-content: center; padding: 8px 12px; border-bottom: 1px solid var(--ink-faint); background: var(--paper); }
+  .rs-mode-row[hidden] { display: none; }
+  .rs-mode-row button {
+    font: 500 15px var(--body); color: var(--ink); background: var(--paper); cursor: pointer;
+    border: 1.4px solid var(--ink-soft); padding: 5px 16px;
+  }
+  .rs-mode-row button:first-child { border-radius: 999px 0 0 999px; }
+  .rs-mode-row button:last-child { border-radius: 0 999px 999px 0; border-left: 0; }
+  .rs-mode-row button[aria-pressed="true"] { background: var(--honey); border-color: var(--ink); }
+  .rs-mode-row button:focus-visible { outline: 3px solid var(--honey); outline-offset: 2px; }
+
+  .reader-sheet.paged .rs-chtitle { display: none; }
+  .reader-sheet.paged.first-page .rs-chtitle { display: block; }
+  .reader-sheet.paged .rpage { display: none; border-top: 0; padding-top: 10px; }
+  .reader-sheet.paged .rpage.shown { display: block; animation: pagein .45s ease both; }
+  .reader-sheet.paged .rpage.now::before, .reader-sheet.paged .pno { display: none; }
+  .reader-sheet.paged .rpage img { max-height: 38vh; }
+  @keyframes pagein { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: none; } }
+
+  .rs-pnav { display: none; align-items: center; gap: 10px; padding: 8px 14px; border-top: 1px solid var(--ink-faint); background: var(--paper); }
+  .reader-sheet.paged .rs-pnav { display: flex; }
+  .pn-btn {
+    flex: none; width: 58px; height: 58px; border-radius: 50%; cursor: pointer; color: var(--ink);
+    border: 1.6px solid var(--ink); background: var(--card); display: grid; place-items: center;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .pn-btn svg { width: 26px; height: 26px; }
+  .pn-btn:disabled { opacity: .3; cursor: default; }
+  .pn-btn:focus-visible { outline: 3px solid var(--honey); outline-offset: 2px; }
+  .pn-mid { flex: 1; text-align: center; }
+  .pn-count { font-family: var(--display-sc); font-size: 16px; letter-spacing: .05em; color: var(--ink-soft); }
+  .pn-cue { display: none; align-items: center; justify-content: center; gap: 6px; font-family: var(--display); font-style: italic; font-size: 21px; }
+  .pn-cue svg { width: 34px; height: 26px; animation: bob 1.6s ease-in-out infinite; }
+  .reader-sheet.await-turn .pn-count { display: none; }
+  .reader-sheet.await-turn .pn-cue { display: flex; }
+  .reader-sheet.await-turn .pn-next { background: var(--honey); animation: glow 1.8s ease-in-out infinite; }
+  .pn-next.not-yet { animation: nope .4s ease; }
+  @keyframes nope { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+  .oops { grid-column: 1 / -1; margin: 8px 0 0; font-style: italic; color: var(--honey-deep); display: none; }
+  .card.missing .oops { display: block; }
+
+  /* newest chapter: a slow, gentle glow */
+  .card.newest { animation: glow 3.6s ease-in-out infinite; }
+  @keyframes glow {
+    0%, 100% { box-shadow: 3px 4px 0 rgba(62,47,35,.12), 0 0 0 0 var(--honey-glow); }
+    50% { box-shadow: 3px 4px 0 rgba(62,47,35,.12), 0 0 26px 6px var(--honey-glow); }
+  }
+  .ready-tag {
+    display: inline-block; font-family: var(--display-sc); font-size: 14px; letter-spacing: .05em;
+    background: var(--honey); border: 1.2px solid var(--ink); border-radius: 999px; padding: 0 9px; margin-left: 4px;
+  }
+
+  /* coming soon */
+  .card.soon { background: transparent; border-style: dashed; border-color: var(--ink-faint); box-shadow: none; }
+  .card.soon .art { opacity: .45; }
+  .card.soon h3 { color: var(--ink-soft); }
+  .card.soon .full-title { color: var(--ink-faint); }
+  .soon-badge {
+    width: 68px; text-align: center; font-family: var(--display); font-style: italic;
+    font-size: 15px; line-height: 1.15; color: var(--ink-soft);
+  }
+  .soon-badge .pot { width: 38px; height: 42px; display: block; margin: 0 auto 2px; }
+
+  /* up next */
+  .card.up-next { border-color: var(--ink-soft); background: rgba(255,249,236,.6); }
+  .card.up-next .art { opacity: .7; }
+  .ribbon {
+    position: absolute; top: -13px; left: 18px;
+    font-family: var(--display-sc); font-size: 15px; letter-spacing: .06em;
+    background: var(--blush); border: 1.4px solid var(--ink); padding: 1px 12px 2px;
+    border-radius: 4px 6px 4px 5px; transform: rotate(-2deg);
+  }
+  .card .buzz { position: absolute; width: 34px; height: 26px; right: 22px; top: -18px; animation: bob 2.4s ease-in-out infinite; }
+  @keyframes bob {
+    0%, 100% { transform: translate(0, 0) rotate(-6deg); }
+    25% { transform: translate(-6px, -5px) rotate(4deg); }
+    50% { transform: translate(-12px, 1px) rotate(-3deg); }
+    75% { transform: translate(-5px, 4px) rotate(5deg); }
+  }
+
+  /* the welcome letter */
+  .letter { grid-template-columns: 110px 1fr auto; background: #FFFBF1; }
+  .letter::before {
+    content: ""; position: absolute; inset: 6px; border: 1px solid var(--ink-faint); border-radius: 14px 18px 12px 20px; pointer-events: none;
+  }
+
+  /* pots */
+  .pot .honey { transform-box: fill-box; transform-origin: 50% 100%; transform: scaleY(0); transition: transform 1.8s cubic-bezier(.3,.7,.3,1); }
+  .pot.pot-full .honey { transform: scaleY(1); }
+  .pot .drip { opacity: 0; transition: opacity .6s ease 1.5s; }
+  .pot.pot-full .drip { opacity: 1; }
+  .pot .lid { display: none; }
+  .pot.pot-soon .lid { display: inline; }
+  .pot.pot-soon { opacity: .55; filter: saturate(.3); }
+  .pot .ln { fill: none; stroke: var(--ink); stroke-width: 1.8; stroke-linejoin: round; }
+  .pot .ln-f { stroke: var(--ink); stroke-width: 1.8; stroke-linejoin: round; }
+  .pot text { font-family: var(--display-sc); font-size: 7.4px; fill: var(--ink); letter-spacing: .04em; }
+
+  /* bees arriving with a new chapter */
+  .swarm { position: absolute; inset: 0; pointer-events: none; overflow: visible; }
+  .swarm .orbit { position: absolute; left: 50%; top: 50%; width: 0; height: 0; animation: orbit 4.2s ease-in-out forwards; }
+  .swarm .orbit svg { position: absolute; width: 34px; height: 26px; margin: -13px 0 0 -17px; }
+  .swarm .o1 svg { transform: translate(var(--r), 0); }
+  .swarm .o2 { animation-delay: .35s; animation-duration: 4.6s; }
+  .swarm .o2 svg { transform: translate(calc(var(--r) * -1), -20px) scaleX(-1); }
+  .swarm .o3 { animation-delay: .7s; animation-duration: 4s; }
+  .swarm .o3 svg { transform: translate(0, 58px); }
+  @keyframes orbit {
+    0% { transform: rotate(-40deg) scale(.4); opacity: 0; }
+    12% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: rotate(400deg) scale(1); opacity: 0; }
+  }
+  .card.arriving { animation: arrive 1.2s ease both, glow 3.6s ease-in-out 1.2s infinite; }
+  @keyframes arrive { from { transform: translateY(10px) scale(.98); } to { transform: none; } }
+  .honey-edge { position: absolute; left: 22px; width: calc(100% - 44px); top: -1.6px; height: 13px; pointer-events: none; }
+  .card.ready { padding-top: 22px; }
+  .honey-edge path { transform-origin: top; }
+  .card.arriving .honey-edge path { animation: pour 1.6s ease-out .2s both; }
+  @keyframes pour { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+
+  .scene .bee-a { animation: bob 3s ease-in-out infinite; transform-box: fill-box; }
+  .scene .bee-b { animation: bob 3.6s ease-in-out -1.2s infinite; transform-box: fill-box; }
+  .scene .bee-c { animation: bob 2.8s ease-in-out -.6s infinite; transform-box: fill-box; }
+
+  footer { text-align: center; margin-top: 48px; font-size: 15px; color: var(--ink-soft); font-style: italic; }
+  footer p { margin: 4px 0; }
+  .goodnight { display: block; width: 150px; height: auto; margin: 0 auto 28px; }
+
+  @media (max-width: 460px) {
+    body { font-size: 18px; }
+    .card, .letter { grid-template-columns: 76px 1fr auto; gap: 4px 12px; padding: 14px 12px; }
+    .card .art { width: 76px; height: 72px; }
+    .card h3 { font-size: 22px; }
+    .card .full-title { font-size: 14.5px; }
+    .play { width: 58px; height: 58px; }
+    .soon-badge { width: 58px; font-size: 14px; }
+    .time { min-width: 0; font-size: 13px; }
+    .shelf { gap: 2px; padding: 12px 4px 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .swarm { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<svg class="defs" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="ink" filterUnits="userSpaceOnUse" x="-100" y="-100" width="1100" height="600">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="3" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="wash" filterUnits="userSpaceOnUse" x="-100" y="-100" width="1100" height="600">
+      <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="3" seed="8" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="7" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feGaussianBlur in="d" stdDeviation="0.7" result="b"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="2" seed="2" result="grain"/>
+      <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1 1.25" result="g2"/>
+      <feComposite in="b" in2="g2" operator="in"/>
+    </filter>
+    <symbol id="bee" viewBox="0 0 40 30">
+      <ellipse cx="15" cy="8" rx="7" ry="5" fill="#FFFFFF" fill-opacity=".75" stroke="#3E2F23" stroke-width="1.2" transform="rotate(-22 15 8)"/>
+      <ellipse cx="23" cy="7.5" rx="6" ry="4.5" fill="#FFFFFF" fill-opacity=".75" stroke="#3E2F23" stroke-width="1.2" transform="rotate(22 23 7.5)"/>
+      <ellipse cx="20" cy="18.5" rx="12" ry="8" fill="#F2C14E" stroke="#3E2F23" stroke-width="1.5"/>
+      <path d="M15.5 11.2 q-2.2 7.3 0 14.6 M22 10.6 q-2.2 7.9 0 15.8" stroke="#3E2F23" stroke-width="2.6" fill="none"/>
+      <circle cx="29.2" cy="16.5" r="1.3" fill="#3E2F23"/>
+      <path d="M8 19 l-4.5 1" stroke="#3E2F23" stroke-width="1.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.2v13.6c0 .8.9 1.3 1.6.8l10-6.8c.6-.4.6-1.2 0-1.6l-10-6.8C8.9 3.9 8 4.4 8 5.2z" fill="#3E2F23"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><rect x="6" y="5" width="4.5" height="14" rx="1.4" fill="#3E2F23"/><rect x="13.5" y="5" width="4.5" height="14" rx="1.4" fill="#3E2F23"/></symbol>
+  </defs>
+</svg>
+
+<main class="book">
+
+  <header class="title-page">
+    <h1>Winnie-the-Pooh</h1>
+    <p class="byline">by A. A. Milne</p>
+    <p class="reader" id="reader">read aloud by Uncle Grant</p>
+
+    <svg class="scene" viewBox="0 0 800 300" role="img" aria-label="A watercolour picture of Pooh's house in a big tree, with bees buzzing around a honey pot">
+      <g filter="url(#wash)">
+        <ellipse cx="420" cy="110" rx="430" ry="120" fill="#C9DCE6" opacity=".55"/>
+        <ellipse cx="610" cy="62" rx="110" ry="34" fill="#FFFFFF" opacity=".7"/>
+        <ellipse cx="330" cy="46" rx="70" ry="20" fill="#FFFFFF" opacity=".6"/>
+        <path d="M0 212 Q180 168 380 200 T800 184 V300 H0Z" fill="#B9C9A0" opacity=".75"/>
+        <circle cx="690" cy="158" r="36" fill="#A3B98A" opacity=".75"/>
+        <circle cx="722" cy="172" r="28" fill="#A3B98A" opacity=".7"/>
+        <circle cx="660" cy="176" r="24" fill="#A3B98A" opacity=".7"/>
+        <path d="M0 256 Q260 224 520 248 T800 238 V300 H0Z" fill="#94AD78" opacity=".85"/>
+        <path d="M122 264 C130 216 126 172 134 128 L180 128 C186 172 182 216 196 264 Z" fill="#9C7A55" opacity=".8"/>
+        <circle cx="110" cy="112" r="54" fill="#7F9F63" opacity=".7"/>
+        <circle cx="166" cy="82" r="64" fill="#7F9F63" opacity=".7"/>
+        <circle cx="222" cy="116" r="50" fill="#7F9F63" opacity=".7"/>
+        <circle cx="160" cy="138" r="44" fill="#6F8F55" opacity=".6"/>
+        <circle cx="172" cy="68" r="30" fill="#A9C08A" opacity=".7"/>
+        <path d="M146 262 V230 a12 12 0 0 1 24 0 V262Z" fill="#6E4A33" opacity=".85"/>
+        <rect x="120" y="201" width="76" height="15" fill="#EFE0BD"/>
+        <ellipse cx="560" cy="266" rx="40" ry="6" fill="#6F8F55" opacity=".6"/>
+      </g>
+      <g filter="url(#ink)" fill="none" stroke="#3E2F23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M0 212 Q180 168 380 200 T800 184" stroke-width="1.1" opacity=".55"/>
+        <path d="M0 256 Q260 224 520 248 T800 238" stroke-width="1.4"/>
+        <path d="M122 264 C130 216 126 172 134 132"/>
+        <path d="M180 132 C186 172 182 216 196 264"/>
+        <path d="M122 264 q-10 5 -20 2 M196 264 q10 4 22 1 M150 264 q2 4 -4 8"/>
+        <path d="M140 150 q5 20 0 38 M176 160 q-4 16 1 30" stroke-width="1.3"/>
+        <path d="M68 122 C56 82 98 48 128 60 C140 22 204 22 214 60 C252 54 280 96 258 126 C268 164 214 172 196 152 C180 172 128 172 118 150 C84 162 56 146 68 122Z" stroke-width="1.6"/>
+        <path d="M100 100 q10 -8 18 0 M190 96 q8 -6 16 1 M150 50 q8 -6 16 0" stroke-width="1.1"/>
+        <path d="M146 262 V230 a12 12 0 0 1 24 0 V262"/>
+        <rect x="120" y="201" width="76" height="15" stroke-width="1.4"/>
+        
+        <path d="M660 150 C650 128 690 112 704 130 C726 122 748 150 738 172 C742 196 700 196 690 186 C672 200 640 190 646 172 C632 168 640 148 660 150Z" stroke-width="1.1" opacity=".6"/>
+        <path d="M692 190 v28" stroke-width="1.4" opacity=".6"/>
+        <path d="M296 250 q1 -6 -2 -10 M300 250 q0 -7 4 -11 M304 250 q1 -4 4 -6 M430 244 q1 -6 -2 -9 M434 244 q1 -6 4 -9 M600 252 q1 -7 -2 -11 M604 252 q0 -6 4 -10 M608 252 q1 -4 4 -6 M40 262 q1 -6 -2 -9 M44 262 q1 -6 4 -9 M740 244 q1 -5 -2 -8 M744 244 q1 -5 3 -8" stroke-width="1.3"/>
+        <path d="M458 196 C480 140 548 138 540 176 S604 226 640 160" stroke-width="1.5" stroke-dasharray="1 7"/>
+      </g>
+      <text x="158" y="212.5" text-anchor="middle" font-family="IM Fell English SC, Georgia, serif" font-size="10" fill="#3E2F23">MR SANDERS</text>
+      <g id="scene-pot"></g>
+      <use href="#bee" class="bee-a" x="440" y="182" width="36" height="27"/>
+      <use href="#bee" class="bee-b" x="592" y="176" width="30" height="23"/>
+      <use href="#bee" class="bee-c" x="632" y="140" width="34" height="26"/>
+    </svg>
+  </header>
+
+  <section class="dedication" aria-label="Dedication">
+    <svg class="bee-vignette" viewBox="0 0 40 30" aria-hidden="true"><use href="#bee"/></svg>
+    <p class="for">For</p>
+    <p class="names" id="ded-names"></p>
+    <p class="message" id="ded-message" hidden></p>
+    <p class="from" id="ded-from"></p>
+  </section>
+
+  <ul class="chapters" id="welcome"></ul>
+
+  <div class="section-head">
+    <h2>Our Honey Shelf</h2>
+    <p id="shelf-summary"></p>
+  </div>
+  <div class="shelf" id="shelf"></div>
+  <p class="shelf-note">Every story you hear fills a honey pot.</p>
+
+  <div class="section-head">
+    <h2>The Stories</h2>
+  </div>
+  <ol class="chapters" id="chapters"></ol>
+
+  <footer>
+    <img class="goodnight" src="art/goodnight.png" alt="Christopher Robin going up the stairs to bed, pulling Pooh along behind him, bump, bump, bump" loading="lazy">
+    <p><cite>Winnie-the-Pooh</cite> by A. A. Milne, first published 1926.</p>
+    <p>Drawings by E. H. Shepard from the 1926 edition. Watercolour washes added.</p>
+  </footer>
+</main>
+
+<dialog id="reader-sheet" class="reader-sheet" aria-labelledby="rs-title">
+  <div class="rs-head">
+    <div class="rs-heading">
+      <p class="rs-label"></p>
+      <h2 class="rs-title" id="rs-title"></h2>
+    </div>
+    <button type="button" class="rs-btn rs-size" aria-label="Change text size"><span aria-hidden="true">A<span>A</span></span></button>
+    <button type="button" class="rs-btn rs-close" aria-label="Close the book"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="rs-mode-row" role="group" aria-label="How to read" hidden>
+    <button type="button" data-mode="pages" aria-pressed="true">Turn the pages</button>
+    <button type="button" data-mode="scroll" aria-pressed="false">Scroll</button>
+  </div>
+  <div class="rs-body"><div class="rs-text"></div></div>
+  <div class="rs-pnav">
+    <button type="button" class="pn-btn pn-prev" aria-label="Previous page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <div class="pn-mid" aria-live="polite">
+      <span class="pn-count"></span>
+      <span class="pn-cue"><svg viewBox="0 0 40 30" aria-hidden="true"><use href="#bee"/></svg>Turn the page!</span>
+    </div>
+    <button type="button" class="pn-btn pn-next" aria-label="Next page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+  <div class="rs-foot">
+    <button type="button" class="play" aria-label="Play">
+      <svg class="i-play" aria-hidden="true"><use href="#i-play"/></svg>
+      <svg class="i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+    </button>
+    <button type="button" class="back" aria-label="Go back 15 seconds">&#8634; 15</button>
+    <div class="bar" role="slider" tabindex="0" aria-label="Position in story" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="track"><div class="fill"></div></div><div class="ticks"></div>
+      <svg class="thumb" viewBox="0 0 40 30" aria-hidden="true"><use href="#bee"/></svg>
+    </div>
+    <span class="time">0:00</span>
+  </div>
+</dialog>
+
+<script src="stories.js"></script>
+<script>
+(function () {
+  "use strict";
+  var S = window.STORYBOOK;
+  var NUMS = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"];
+
+  var store = {
+    get: function (k, d) { try { var v = localStorage.getItem("pooh:" + k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+    set: function (k, v) { try { localStorage.setItem("pooh:" + k, JSON.stringify(v)); } catch (e) {} }
+  };
+  var listened = new Set(store.get("listened", []));
+  var seen = new Set(store.get("seen", []));
+  var positions = store.get("positions", {});
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  // ── Pictures ──────────────────────────────────────────────
+  var potCount = 0;
+  function pot(state, attrs) {
+    var id = "potclip" + (++potCount);
+    var body = "M18 17 C6 23 4 45 12 55 C18 62 42 62 48 55 C56 45 54 23 42 17 Z";
+    return '<svg class="pot pot-' + state + '" viewBox="0 0 60 66" ' + (attrs || "") + ' aria-hidden="true" focusable="false">' +
+      '<defs><clipPath id="' + id + '"><path d="' + body + '"/></clipPath></defs>' +
+      '<path d="' + body + '" fill="#D8B27A"/>' +
+      '<g clip-path="url(#' + id + ')"><rect class="honey" x="0" y="21" width="60" height="45" fill="#E3A51F"/></g>' +
+      '<path class="ln" d="' + body + '"/>' +
+      '<rect class="ln-f" x="15" y="10" width="30" height="8" rx="3" fill="#C99A5E"/>' +
+      '<path class="drip ln-f" d="M39 17.5 c1.6 4 3 8.5 1.2 11.3 c-1.4 2.1 -3.8 1 -3.4 -2 c.3 -2.8 .9 -5.4 1.4 -9.3z" fill="#E3A51F" stroke-width="1.2"/>' +
+      '<rect class="ln-f" x="18.5" y="31" width="23" height="11.5" rx="1.5" fill="#F7EDD6" stroke-width="1.2"/>' +
+      '<text x="30" y="39.6" text-anchor="middle" textLength="18" lengthAdjust="spacingAndGlyphs">HUNNY</text>' +
+      '<g class="lid"><ellipse class="ln-f" cx="30" cy="10" rx="17.5" ry="4.5" fill="#B98E57"/><circle class="ln-f" cx="30" cy="5" r="2.8" fill="#B98E57"/></g>' +
+      "</svg>";
+  }
+
+  function art(src, wash) {
+    return '<div class="art" aria-hidden="true">' +
+      '<svg viewBox="0 0 100 100"><circle cx="50" cy="52" r="44" fill="' + esc(wash || "#F1DDAE") + '" opacity=".55" filter="url(#wash)"/></svg>' +
+      '<img src="' + esc(src) + '" alt="" loading="lazy" decoding="async"></div>';
+  }
+
+  var honeyEdge = '<svg class="honey-edge" viewBox="0 0 300 22" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0 H300 V3 C280 3 282 12 276 12 C270 12 272 3 250 3 H190 C176 3 180 18 172 18 C164 18 168 3 150 3 H80 C66 3 70 10 64 10 C58 10 60 3 46 3 H0 Z" fill="#E3A51F" stroke="#3E2F23" stroke-width="1.2" vector-effect="non-scaling-stroke"/></svg>';
+
+  // ── Render ────────────────────────────────────────────────
+  var d = S.dedication || {};
+  document.getElementById("ded-names").textContent = d.forNames || "";
+  if (d.message) {
+    var m = document.getElementById("ded-message");
+    m.textContent = d.message;
+    m.hidden = false;
+  }
+  document.getElementById("ded-from").innerHTML = esc(d.fromLine || "with love from") + "<span>" + esc(d.fromName || "") + "</span>";
+  if (d.fromName) document.getElementById("reader").textContent = "read aloud by " + d.fromName;
+  document.getElementById("scene-pot").innerHTML = pot("full", 'x="524" y="206" width="66" height="72"');
+
+  var chapters = S.chapters.slice().sort(function (a, b) { return a.number - b.number; });
+  chapters.forEach(function (c) { c.key = "ch" + c.number; c.isReady = c.status === "ready"; });
+  var ready = chapters.filter(function (c) { return c.isReady; });
+  var upNext = chapters.filter(function (c) { return !c.isReady; })[0];
+
+  function playerRow() {
+    return '<div class="player">' +
+      '<button type="button" class="back" aria-label="Go back 15 seconds">&#8634; 15</button>' +
+      '<div class="bar" role="slider" tabindex="0" aria-label="Position in story" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">' +
+      '<div class="track"><div class="fill"></div></div><div class="ticks"></div>' +
+      '<svg class="thumb" viewBox="0 0 40 30" aria-hidden="true"><use href="#bee"/></svg></div>' +
+      '<span class="time">0:00</span></div>' +
+      '<div class="scenes" hidden></div>' +
+      '<p class="oops">This recording is still buzzing its way here. Check back soon!</p>';
+  }
+
+  function playButton(label) {
+    return '<button type="button" class="play" aria-label="Play ' + esc(label) + '">' +
+      '<svg class="i-play" aria-hidden="true"><use href="#i-play"/></svg>' +
+      '<svg class="i-pause" aria-hidden="true"><use href="#i-pause"/></svg></button>';
+  }
+
+  var w = S.welcome;
+  if (w && w.status === "ready") {
+    document.getElementById("welcome").innerHTML =
+      '<li class="card letter" id="card-welcome" data-key="welcome">' +
+      art(w.picture, w.wash) +
+      "<div>" +
+      '<p class="label">' + esc(w.subtitle || "") + "</p>" +
+      "<h3>" + esc(w.title) + "</h3>" +
+      "</div>" +
+      playButton(w.title) +
+      playerRow() +
+      "</li>";
+  }
+
+  var newest = null;
+  for (var i = ready.length - 1; i >= 0; i--) {
+    if (!listened.has(ready[i].key)) { newest = ready[i]; break; }
+  }
+
+  document.getElementById("chapters").innerHTML = chapters.map(function (c) {
+    var num = "Chapter " + (NUMS[c.number] || c.number);
+    var classes = ["card"];
+    classes.push(c.isReady ? "ready" : "soon");
+    if (c === upNext) classes.push("up-next");
+    if (c === newest) classes.push("newest");
+    var potState = c.isReady ? (listened.has(c.key) ? "full" : "ready") : "soon";
+    var html = '<li class="' + classes.join(" ") + '" id="card-' + c.key + '" data-key="' + c.key + '">';
+    if (c === upNext) html += '<span class="ribbon">Up next!</span><svg class="buzz" viewBox="0 0 40 30" aria-hidden="true"><use href="#bee"/></svg>';
+    if (c.isReady) html += honeyEdge;
+    html += art(c.picture, c.wash);
+    html += "<div>";
+    html += '<p class="label">' + (c.isReady ? pot(potState) : "") + esc(num) +
+      (c === newest ? '<span class="ready-tag">Ready!</span>' : "") + "</p>";
+    html += "<h3>" + esc(c.short) + "</h3>";
+    html += '<p class="full-title">' + esc(c.title) + "</p>";
+    if (c.isReady) {
+      html += '<p class="meta">' + (c.minutes ? "About " + esc(c.minutes) + " minutes" : "") +
+        '<span class="heard">' + (listened.has(c.key) ? (c.minutes ? " · " : "") + "heard it!" : "") + "</span></p>";
+      html += '<p class="actions"><button type="button" class="read-btn">' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5C5.5 4.5 9 4.5 12 6.5c3-2 6.5-2 9-1V19c-2.5-1-6-1-9 1-3-2-6.5-2-9-1z M12 6.5V20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>' +
+        "Read along</button>" +
+        '<a class="save" href="' + esc(c.file) + '" download>Save for the car</a></p>';
+    }
+    html += "</div>";
+    if (c.isReady) {
+      html += playButton(num + ": " + c.short) + playerRow();
+    } else {
+      html += '<div class="soon-badge">' + pot("soon") + esc(c.soonText || "Coming soon") + "</div>";
+    }
+    return html + "</li>";
+  }).join("");
+
+  function renderShelf() {
+    document.getElementById("shelf").innerHTML = chapters.map(function (c) {
+      var st = c.isReady ? (listened.has(c.key) ? "full" : "ready") : "soon";
+      var words = c.isReady ? (listened.has(c.key) ? "listened" : "ready to hear") : "coming soon";
+      return '<button type="button" data-go="' + c.key + '" aria-label="Chapter ' + c.number + ", " + esc(c.short) + ", " + words + '">' +
+        pot(st) + "<span>" + c.number + "</span></button>";
+    }).join("");
+    var heard = chapters.filter(function (c) { return listened.has(c.key); }).length;
+    var left = chapters.length - ready.length;
+    var parts = [];
+    parts.push(ready.length === 1 ? "1 story is ready" : ready.length + " stories are ready");
+    if (heard) parts.push(heard + " heard so far");
+    if (left) parts.push(left + " more on the way");
+    document.getElementById("shelf-summary").textContent = parts.join(" · ");
+  }
+  renderShelf();
+
+  document.getElementById("shelf").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-go]");
+    if (!b) return;
+    var card = document.getElementById("card-" + b.getAttribute("data-go"));
+    if (card) card.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+
+  // ── New chapters arrive with bees ─────────────────────────
+  var arriving = ready.filter(function (c) { return !seen.has(c.key); });
+  arriving.forEach(function (c, idx) {
+    var card = document.getElementById("card-" + c.key);
+    setTimeout(function () {
+      card.classList.add("arriving");
+      var swarm = document.createElement("div");
+      swarm.className = "swarm";
+      swarm.style.setProperty("--r", Math.min(card.offsetWidth / 2 - 10, 190) + "px");
+      swarm.innerHTML = ["o1", "o2", "o3"].map(function (o) {
+        return '<div class="orbit ' + o + '"><svg viewBox="0 0 40 30" aria-hidden="true"><use href="#bee"/></svg></div>';
+      }).join("");
+      card.appendChild(swarm);
+      setTimeout(function () { swarm.remove(); card.classList.remove("arriving"); }, 5600);
+    }, 500 + idx * 900);
+    seen.add(c.key);
+  });
+  if (arriving.length) store.set("seen", Array.from(seen));
+
+  // ── Audio ─────────────────────────────────────────────────
+  var items = {};
+  chapters.forEach(function (c) {
+    if (c.isReady) items[c.key] = { file: c.file, title: "Chapter " + (NUMS[c.number] || c.number) + ": " + c.short };
+  });
+  if (w && w.status === "ready") items.welcome = { file: w.file, title: w.title };
+
+  var audio = new Audio();
+  audio.preload = "none";
+  var current = null;
+  var lastSave = 0;
+
+  function fmt(t) {
+    if (!isFinite(t) || t < 0) t = 0;
+    var m = Math.floor(t / 60), s = Math.floor(t % 60);
+    return m + ":" + (s < 10 ? "0" : "") + s;
+  }
+
+  function card(key) { return document.getElementById("card-" + key); }
+
+  // ── Read along ────────────────────────────────────────────
+  var reader = document.getElementById("reader-sheet");
+  var readerText = reader.querySelector(".rs-text");
+  var readerKey = null;
+  var textCache = {};
+  var SIZES = [20, 23, 27];
+  var sizeIdx = store.get("textSize", 0) % SIZES.length;
+  function applySize() { reader.style.setProperty("--rs-size", SIZES[sizeIdx] + "px"); }
+  applySize();
+
+  // Text comes from our own build of the Gutenberg edition (tools/build-text.py); only <i> survives in it.
+  function renderPages(data, title) {
+    var last = data.pages.length - 1;
+    return '<h3 class="rs-chtitle">' + esc(title) + "</h3>" + data.pages.map(function (pg, i) {
+      return '<section class="rpage" aria-label="Page ' + (i + 1) + '"><span class="pno" aria-hidden="true">' + (i + 1) + "</span>" +
+        pg.blocks.map(function (b) {
+          if (b.type === "img") return '<img src="art/book/' + esc(b.img) + '.png" alt="" loading="lazy">';
+          if (b.type === "p") return "<p>" + b.text + "</p>";
+          if (b.type === "verse") return '<p class="verse">' + b.lines.join("<br>") + "</p>";
+          return '<p class="orn" aria-hidden="true">* * *</p>';
+        }).join("") +
+        (i === last ? '<p class="rs-end">The End of Chapter ' + esc(NUMS[data.number] || data.number) + "</p>" : "") +
+        "</section>";
+    }).join("");
+  }
+
+  // ── Turn the pages ────────────────────────────────────────
+  // Page N+1 starts at the Nth "page" label. At each boundary the story pauses until the page is turned.
+  var readMode = store.get("readMode", "pages") === "scroll" ? "scroll" : "pages";
+  var pagesOk = false;
+  var pageCount = 0;
+  var pg = 0;
+  var awaitingTurn = false;
+  var raf = 0;
+
+  function isPaged() { return pagesOk && readMode === "pages" && reader.open; }
+  function bounds() { return pageTimes[readerKey] || []; }
+  function pageStart(i) { return i <= 0 ? 0 : bounds()[i - 1]; }
+  function pageEnd(i) { return i < bounds().length ? bounds()[i] : Infinity; }
+  function pageAt(t) {
+    var b = bounds(), i = 0;
+    while (i < b.length && b[i] <= t + 0.02) i++;
+    return i;
+  }
+  function readerTime() {
+    if (current === readerKey) return audio.currentTime;
+    return positions[readerKey] ? positions[readerKey].t : 0;
+  }
+  function playingHere() { return current === readerKey && !audio.paused; }
+
+  function updateNav() {
+    if (!pagesOk) return;
+    reader.classList.toggle("await-turn", awaitingTurn);
+    reader.classList.toggle("first-page", pg === 0);
+    reader.querySelector(".pn-prev").disabled = pg === 0;
+    reader.querySelector(".pn-next").disabled = pg >= pageCount - 1 || (!awaitingTurn && playingHere());
+    reader.querySelector(".pn-count").textContent = "Page " + (pg + 1) + " of " + pageCount;
+  }
+
+  function showPage(i) {
+    i = Math.max(0, Math.min(pageCount - 1, i));
+    var changed = i !== pg;
+    pg = i;
+    readerText.querySelectorAll(".rpage").forEach(function (s, k) {
+      s.classList.toggle("shown", k === i);
+      s.classList.toggle("now", k === i);
+    });
+    if (changed && isPaged()) reader.querySelector(".rs-body").scrollTop = 0;
+    updateNav();
+  }
+
+  function setAwaiting(on) { awaitingTurn = on; updateNav(); }
+
+  function seekReader(t) {
+    if (current === readerKey) { audio.currentTime = t; return; }
+    positions[readerKey] = { t: t, d: durations[readerKey] || 0 };
+    store.set("positions", positions);
+    paint(readerKey, t, durations[readerKey]);
+  }
+
+  function tryNext() {
+    if (!isPaged() || pg >= pageCount - 1) return;
+    if (awaitingTurn) {
+      setAwaiting(false);
+      showPage(pg + 1);
+      start(readerKey, pageStart(pg));
+    } else if (playingHere()) {
+      var nb = reader.querySelector(".pn-next");
+      nb.classList.remove("not-yet");
+      void nb.offsetWidth;
+      nb.classList.add("not-yet");
+    } else {
+      showPage(pg + 1);
+      seekReader(pageStart(pg));
+    }
+  }
+
+  function prevPage() {
+    if (!isPaged() || pg === 0) return;
+    setAwaiting(false);
+    showPage(pg - 1);
+    seekReader(pageStart(pg));
+  }
+
+  function checkBoundary() {
+    // Seeks are handled by the "seeked" listener; anything past the page end here is playback overshoot.
+    if (!isPaged() || current !== readerKey || awaitingTurn || audio.seeking) return;
+    var t = audio.currentTime;
+    if (audio.paused || t < pageEnd(pg) - 0.08) return;
+    if (document.hidden) { showPage(pageAt(t)); return; }
+    audio.pause();
+    audio.currentTime = pageEnd(pg);
+    setAwaiting(true);
+  }
+
+  function tick() {
+    raf = 0;
+    if (!isPaged() || !playingHere()) return;
+    checkBoundary();
+    raf = requestAnimationFrame(tick);
+  }
+  function kick() { if (!raf && isPaged() && playingHere()) raf = requestAnimationFrame(tick); }
+
+  function applyMode() {
+    var row = reader.querySelector(".rs-mode-row");
+    row.hidden = !pagesOk;
+    reader.classList.toggle("paged", pagesOk && readMode === "pages");
+    row.querySelectorAll("button").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.dataset.mode === readMode));
+    });
+    setAwaiting(false);
+    if (pagesOk) showPage(pageAt(readerTime()));
+    kick();
+  }
+
+  function setupPages(data) {
+    var b = pageTimes[readerKey];
+    pageCount = data.pages.length;
+    pagesOk = !!b && b.length === pageCount - 1;
+    if (b && !pagesOk) console.warn("Page labels don't match the text: " + b.length + " labels for " + pageCount + " pages (need " + (pageCount - 1) + ").");
+    pg = -1;
+    applyMode();
+  }
+
+  function openReader(key) {
+    var c = chapters.filter(function (x) { return x.key === key; })[0];
+    if (!c) return;
+    readerKey = key;
+    reader.dataset.key = key;
+    reader.querySelector(".rs-label").textContent = "Chapter " + (NUMS[c.number] || c.number);
+    reader.querySelector(".rs-title").textContent = c.short;
+    readerText.innerHTML = '<p class="rs-loading">Opening the book…</p>';
+    pagesOk = false;
+    awaitingTurn = false;
+    reader.classList.remove("paged", "await-turn");
+    reader.querySelector(".rs-mode-row").hidden = true;
+    var playingHere = current === key && !audio.paused;
+    reader.classList.toggle("playing", playingHere);
+    reader.querySelector(".play").setAttribute("aria-label", (playingHere ? "Pause " : "Play ") + items[key].title);
+    if (current === key) paint(key, audio.currentTime, audio.duration);
+    else paint(key, positions[key] ? positions[key].t : 0, durations[key] || (positions[key] && positions[key].d));
+    reader.showModal();
+    reader.querySelector(".rs-body").scrollTop = 0;
+    document.body.style.overflow = "hidden";
+    try { history.pushState({ reader: key }, ""); } catch (e) {}
+
+    var n = c.number;
+    (textCache[n] ? Promise.resolve(textCache[n]) : fetch("text/ch" + n + ".json").then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    })).then(function (data) {
+      textCache[n] = data;
+      if (readerKey !== key) return;
+      readerText.innerHTML = renderPages(data, c.title);
+      setupPages(data);
+    }).catch(function () {
+      if (readerKey === key) readerText.innerHTML = '<p class="rs-loading">The book wouldn’t open just now. Try again in a moment.</p>';
+    });
+  }
+
+  // Cleanup runs directly rather than only from the dialog's "close" event, which isn't reliably delivered.
+  function closeReader() {
+    if (reader.open) reader.close();
+    if (readerKey === null) return;
+    readerKey = null;
+    pagesOk = false;
+    awaitingTurn = false;
+    reader.classList.remove("playing", "paged", "await-turn");
+    document.body.style.overflow = "";
+    if (history.state && history.state.reader) history.back();
+  }
+  reader.addEventListener("cancel", function (e) { e.preventDefault(); closeReader(); });
+  reader.addEventListener("close", closeReader);
+  window.addEventListener("popstate", closeReader);
+  document.addEventListener("keydown", function (e) {
+    if (!reader.open) return;
+    if (e.key === "Escape") { e.preventDefault(); closeReader(); return; }
+    if (e.target.closest && e.target.closest(".bar")) return;
+    if (e.key === "ArrowRight" && isPaged()) { e.preventDefault(); tryNext(); }
+    if (e.key === "ArrowLeft" && isPaged()) { e.preventDefault(); prevPage(); }
+  });
+
+  // Swipe to turn; a tap on the page also turns it once the page has finished.
+  var swipe = null;
+  reader.querySelector(".rs-body").addEventListener("pointerdown", function (e) {
+    swipe = isPaged() ? { x: e.clientX, y: e.clientY } : null;
+  });
+  reader.querySelector(".rs-body").addEventListener("pointerup", function (e) {
+    if (!swipe) return;
+    var dx = e.clientX - swipe.x, dy = e.clientY - swipe.y;
+    swipe = null;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) { if (dx < 0) tryNext(); else prevPage(); }
+    else if (Math.abs(dx) < 10 && Math.abs(dy) < 10 && awaitingTurn) tryNext();
+  });
+
+  function paint(key, t, dur) {
+    var pct = dur ? Math.min(100, (t / dur) * 100) : 0;
+    [card(key), readerKey === key ? reader : null].forEach(function (el) {
+      if (!el) return;
+      el.querySelector(".fill").style.width = pct + "%";
+      el.querySelector(".thumb").style.left = pct + "%";
+      el.querySelector(".bar").setAttribute("aria-valuenow", Math.round(pct));
+      el.querySelector(".bar").setAttribute("aria-valuetext", fmt(t) + (dur ? " of " + fmt(dur) : ""));
+      el.querySelector(".time").textContent = fmt(t) + (dur ? " / " + fmt(dur) : "");
+    });
+  }
+
+  // Restore bars for stories left partway through.
+  Object.keys(positions).forEach(function (key) {
+    var p = positions[key];
+    if (items[key] && card(key) && p && p.t > 3) {
+      card(key).classList.add("started");
+      paint(key, p.t, p.d);
+    }
+  });
+
+  // Scene markers: an Audacity label export (File > Export > Export Labels) saved next to the mp3 as .txt.
+  var scenes = {};
+  var durations = {};
+  Object.keys(positions).forEach(function (k) { if (positions[k] && positions[k].d) durations[k] = positions[k].d; });
+
+  var pageTimes = {};
+
+  // Labels named "page" mark page turns; any other non-empty name is a scene.
+  function parseLabels(txt) {
+    var found = { scenes: [], pages: [] };
+    txt.split(/\r?\n/).forEach(function (line) {
+      var parts = line.split("\t");
+      var t = parseFloat(parts[0]);
+      var name = (parts[2] || "").trim();
+      if (!isFinite(t) || !name) return;
+      if (name.toLowerCase() === "page") found.pages.push(t);
+      else found.scenes.push({ t: t, name: name });
+    });
+    found.scenes.sort(function (a, b) { return a.t - b.t; });
+    if (found.scenes.length && found.scenes[0].t > 5) found.scenes.unshift({ t: 0, name: "The Beginning" });
+    found.pages.sort(function (a, b) { return a - b; });
+    found.pages = found.pages.filter(function (t, i, arr) { return i === 0 || t - arr[i - 1] > 0.1; });
+    return found;
+  }
+
+  function drawTicks(key) {
+    var el = card(key), d = durations[key], list = scenes[key];
+    if (!el || !d || !list) return;
+    el.querySelector(".ticks").innerHTML = list.filter(function (s) { return s.t > 1; }).map(function (s) {
+      return '<span class="tick" style="left:' + Math.min(100, (s.t / d) * 100) + '%"></span>';
+    }).join("");
+  }
+
+  function markScene(key, t) {
+    var list = scenes[key];
+    if (!list) return;
+    var idx = -1;
+    list.forEach(function (s, i) { if (t >= s.t - 0.5) idx = i; });
+    card(key).querySelectorAll(".scene-chip").forEach(function (c, i) { c.classList.toggle("on", i === idx); });
+  }
+
+  Object.keys(items).forEach(function (key) {
+    var labelFile = items[key].file.replace(/\.mp3$/i, ".txt");
+    fetch(labelFile).then(function (r) { return r.ok ? r.text() : ""; }).then(function (txt) {
+      var found = parseLabels(txt);
+      if (found.pages.length) pageTimes[key] = found.pages;
+      var list = found.scenes;
+      if (!list.length) return;
+      scenes[key] = list;
+      var box = card(key).querySelector(".scenes");
+      box.innerHTML = list.map(function (s) {
+        return '<button type="button" class="scene-chip" data-t="' + s.t + '">' + esc(s.name) + "<small>" + fmt(s.t) + "</small></button>";
+      }).join("");
+      box.hidden = false;
+      drawTicks(key);
+      if (positions[key]) markScene(key, positions[key].t);
+    }).catch(function () {});
+  });
+
+  audio.addEventListener("loadedmetadata", function () {
+    if (!current) return;
+    durations[current] = audio.duration;
+    if (!audio.seekable.length || audio.seekable.end(0) < 1) {
+      console.warn("This server can't seek within audio, so page turns, scenes and the progress bar will snap back to the start. Preview with: npx http-server -p 8765 -c-1");
+    }
+    drawTicks(current);
+  });
+
+  function markListened(key) {
+    if (listened.has(key)) return;
+    listened.add(key);
+    store.set("listened", Array.from(listened));
+    var el = card(key);
+    if (!el) return;
+    var p = el.querySelector(".label .pot");
+    if (p) { p.classList.remove("pot-ready"); p.classList.add("pot-full"); }
+    el.classList.remove("newest");
+    var tag = el.querySelector(".ready-tag");
+    if (tag) tag.remove();
+    var heard = el.querySelector(".heard");
+    if (heard) heard.textContent = (heard.previousSibling ? " · " : "") + "heard it!";
+    renderShelf();
+    var shelfPot = document.querySelector('#shelf [data-go="' + key + '"] .pot');
+    if (shelfPot) {
+      shelfPot.classList.remove("pot-full");
+      shelfPot.classList.add("pot-ready");
+      requestAnimationFrame(function () { requestAnimationFrame(function () {
+        shelfPot.classList.remove("pot-ready");
+        shelfPot.classList.add("pot-full");
+      }); });
+    }
+  }
+
+  function setPlaying(on) {
+    document.querySelectorAll("[data-key].playing").forEach(function (el) {
+      el.classList.remove("playing");
+      el.querySelector(".play").setAttribute("aria-label", "Play " + items[el.dataset.key].title);
+    });
+    if (on && current) {
+      var el = card(current);
+      el.classList.add("playing", "started");
+      el.querySelector(".play").setAttribute("aria-label", "Pause " + items[current].title);
+      if (readerKey === current) {
+        reader.classList.add("playing");
+        reader.querySelector(".play").setAttribute("aria-label", "Pause " + items[current].title);
+      }
+    }
+  }
+
+  function start(key, at) {
+    var el = card(key);
+    if (current !== key) {
+      current = key;
+      el.classList.remove("missing");
+      audio.src = items[key].file;
+      var saved = positions[key];
+      var target = at != null ? at : (saved && saved.t > 3 ? saved.t : null);
+      if (target != null) {
+        audio.addEventListener("loadedmetadata", function once() {
+          audio.removeEventListener("loadedmetadata", once);
+          if (target < audio.duration - 5) audio.currentTime = target;
+        });
+      }
+      if ("mediaSession" in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: items[key].title,
+          artist: (S.dedication && S.dedication.fromName) || "",
+          album: "Winnie-the-Pooh"
+        });
+      }
+    }
+    else if (at != null) audio.currentTime = at;
+    var pr = audio.play();
+    if (pr && pr.catch) pr.catch(function () {});
+  }
+
+  document.addEventListener("click", function (e) {
+    var rb = e.target.closest(".read-btn");
+    if (rb) { openReader(rb.closest("[data-key]").dataset.key); return; }
+    if (e.target.closest(".rs-close")) { closeReader(); return; }
+    if (e.target.closest(".rs-size")) { sizeIdx = (sizeIdx + 1) % SIZES.length; store.set("textSize", sizeIdx); applySize(); return; }
+    var modeBtn = e.target.closest(".rs-mode-row button");
+    if (modeBtn) { readMode = modeBtn.dataset.mode; store.set("readMode", readMode); applyMode(); return; }
+    if (e.target.closest(".pn-next")) { tryNext(); return; }
+    if (e.target.closest(".pn-prev")) { prevPage(); return; }
+    if (awaitingTurn && e.target.closest("#reader-sheet .play")) { tryNext(); return; }
+    var chip = e.target.closest(".scene-chip");
+    if (chip) { start(chip.closest("[data-key]").dataset.key, parseFloat(chip.dataset.t)); return; }
+    var btn = e.target.closest(".play, .back");
+    if (!btn) return;
+    var key = btn.closest("[data-key]").dataset.key;
+    if (btn.classList.contains("back")) {
+      if (current === key) audio.currentTime = Math.max(0, audio.currentTime - 15);
+      return;
+    }
+    if (current === key && !audio.paused) audio.pause();
+    else start(key);
+  });
+
+  if ("mediaSession" in navigator) {
+    var ms = navigator.mediaSession;
+    try {
+      ms.setActionHandler("seekbackward", function () { audio.currentTime = Math.max(0, audio.currentTime - 15); });
+      ms.setActionHandler("seekforward", function () { audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 15); });
+    } catch (e) {}
+  }
+
+  audio.addEventListener("play", function () { setPlaying(true); updateNav(); kick(); });
+  audio.addEventListener("pause", function () { setPlaying(false); savePos(true); updateNav(); });
+  audio.addEventListener("seeked", function () {
+    if (!isPaged() || current !== readerKey) return;
+    if (awaitingTurn && Math.abs(audio.currentTime - pageEnd(pg)) > 0.3) setAwaiting(false);
+    if (!awaitingTurn) showPage(pageAt(audio.currentTime));
+  });
+  audio.addEventListener("error", function () {
+    if (!current || !audio.getAttribute("src")) return;
+    setPlaying(false);
+    var el = card(current);
+    el.classList.add("missing");
+    el.classList.remove("started");
+    current = null;
+  });
+
+  function savePos(force) {
+    if (!current || !audio.duration) return;
+    var now = Date.now();
+    if (!force && now - lastSave < 4000) return;
+    lastSave = now;
+    positions[current] = { t: audio.currentTime, d: audio.duration };
+    store.set("positions", positions);
+  }
+
+  audio.addEventListener("timeupdate", function () {
+    if (!current) return;
+    paint(current, audio.currentTime, audio.duration);
+    markScene(current, audio.currentTime);
+    if (reader.open && pagesOk && current === readerKey) {
+      if (isPaged()) checkBoundary();
+      else if (pageAt(audio.currentTime) !== pg) showPage(pageAt(audio.currentTime));
+    }
+    savePos(false);
+    if (audio.duration && audio.currentTime / audio.duration > 0.92) markListened(current);
+  });
+
+  audio.addEventListener("ended", function () {
+    if (!current) return;
+    markListened(current);
+    delete positions[current];
+    store.set("positions", positions);
+    paint(current, 0, audio.duration);
+    card(current).classList.remove("started");
+    setPlaying(false);
+    current = null;
+  });
+
+  // Seeking on the honey bar (tap, drag, or arrow keys).
+  function seekFromEvent(bar, e) {
+    var key = bar.closest("[data-key]").dataset.key;
+    if (current !== key) { start(key); return; }
+    if (!audio.duration) return;
+    var r = bar.getBoundingClientRect();
+    var pct = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
+    audio.currentTime = pct * audio.duration;
+    paint(key, audio.currentTime, audio.duration);
+  }
+  var dragging = null;
+  document.addEventListener("pointerdown", function (e) {
+    var bar = e.target.closest(".bar");
+    if (!bar) return;
+    dragging = bar;
+    bar.setPointerCapture(e.pointerId);
+    seekFromEvent(bar, e);
+  });
+  document.addEventListener("pointermove", function (e) { if (dragging) seekFromEvent(dragging, e); });
+  document.addEventListener("pointerup", function () { dragging = null; });
+  document.addEventListener("keydown", function (e) {
+    var bar = e.target.closest && e.target.closest(".bar");
+    if (!bar || current !== bar.closest("[data-key]").dataset.key) return;
+    if (e.key === "ArrowRight") { audio.currentTime = Math.min(audio.duration, audio.currentTime + 10); e.preventDefault(); }
+    if (e.key === "ArrowLeft") { audio.currentTime = Math.max(0, audio.currentTime - 10); e.preventDefault(); }
+  });
+})();
+</script>
+</body>
+</html>
